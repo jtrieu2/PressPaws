@@ -4,6 +4,7 @@ var request;
 var placeicon;
 
 
+
 function initMap() {
 
    // Create the map.
@@ -82,6 +83,14 @@ function callback(results, status) {
             // this creates clickable icons on the left
             var ele = document.createElement("li");
 
+//             <div class="view overlay">
+//     <img src="https://mdbootstrap.com/img/Photos/Others/forest-sm.jpg" class="img-fluid " alt="smaple image">
+//     <div class="mask flex-center rgba-blue-light">
+//         <p class="white-text">Light overlay</p>
+//     </div>
+// </div>
+
+
 
             var div = document.createElement("div");
             var divtext = document.createTextNode(place.name);
@@ -98,12 +107,24 @@ function callback(results, status) {
             placeicon.style.borderRadius = '25px';
             ele.appendChild(placeicon);
 
+
+
             var addyDiv = document.createElement("div");
             var addy = document.createTextNode(place.formatted_address);
             addyDiv.style.fontSize = '10px';
             addyDiv.setAttribute("width",100);
             addyDiv.appendChild(addy);
             ele.appendChild(addyDiv);
+
+
+            var button = document.createElement("button");
+            button.innerHTML = "Bookmark";
+            button.style.fontSize = '10px';
+            button.style.backgroundColor = 'salmon';
+            button.style.borderRadius = '25px';
+            button.style.marginLeft = '50px';
+            ele.appendChild(button);
+
 
             ele.setAttribute("class","doggy-store")
 
