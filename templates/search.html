@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <style type="text/css">
+      ul {
+        list-style-type: none;
+      }
+    </style>
+    <style>
+
+      html, body {
+        width: 100%;
+        height: 100%;
+      }
+      #map {
+        height: 75%;
+        width: 50%;
+        position: absolute;
+        left: 45%;
+        top: 12%;
+      }
+/** Optional: Makes the sample page fill the window. */
+      html, body {
+        padding: 0;
+      }
+
+      #infowindow {
+        text-align:center;
+        }
+
+      #floating-panel {
+        position: absolute;
+        top: 13%;
+        left: 65%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+    }
+
+    .PetShopsContainer {
+      display: grid;
+      grid-template-columns: 300px 300px;
+      grid-auto-rows: 200px;
+      grid-gap: 20px;
+      /*background-color: #2196F3;*/
+      overflow: auto;
+      height: 800px;
+    }
+
+
+    }
+
+    </style>
+<!-- Replace the value of the key parameter with your own API key. -->
+  </head>
+{% extends 'base.html' %}
+{% block content %}
+  <body>
+    <div>
+      <ul id="doggy-list" class="PetShopsContainer">  
+      </ul>  
+    </div>
+    <div id="map"></div>
+    <div id="floating-panel">
+      <input id="address" type="textbox" value="New York">
+      <input id="submit" type="button" value="Find your soulmate!">
+    </div>
+     <script type="text/javascript" src="/static/searchdoggers.js"> </script>
+  }
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_TMPIKWxlpfviB-hQI3DUujoDyG3nU6w&callback=initMap" async defer> -->
+</script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_TMPIKWxlpfviB-hQI3DUujoDyG3nU6w&libraries=places&callback=initMap" async defer></script>
+  </body>
+  {% endblock %}
+
+</html>
