@@ -49,6 +49,7 @@ def landing_login_process():
 		return redirect("/")
 
 	session["user_id"] = user.user_id
+	session["fname"] = user.fname
 
 	print("logged in")
 
@@ -85,6 +86,7 @@ def logout():
     """Log out."""
 
     del session["user_id"]
+
     print("Logged Out.")
     return redirect("/")
 

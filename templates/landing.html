@@ -1,52 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Landing Page of Paws N Reflect and Hello</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <style>
-    #find-dog-btn{
-      margin-top: 15px;
-      margin-bottom: 25px;
-    }
-    .title {
-      font-family: 'Sofia', cursive;
-      font-size: 48px;
-    }
-    .modal-header, h4, .close {
-    background-color: #5cb85c;
-    color:white !important;
-    text-align: center;
-    font-size: 30px;
-    }
-    .modal-footer {
-    background-color: #f9f9f9;
-   }
-  </style>
-</head>
-
-<body>
-
- <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Press Paws</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">About Us</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul>
-  </div>
-</nav>
-
+{% extends 'base.html' %}
+{% block content %}
 
 <div class="container">
   <h2 class="title">Paws N Reflect</h2>  
@@ -110,11 +63,9 @@
   </div>
 
   <!-- Find dog nearby button -->
-<div>
+  <br> </br>
   <div id="find-dog-btn" class="row text-center">
-    <a class="btn btn-primary" href="#">Find a dog near you!</a>
+    <a class="btn btn-info" href="/search">Find a dog near you!</a>
   </div>
-</div>
 
-</body>
-</html>
+{% endblock %}

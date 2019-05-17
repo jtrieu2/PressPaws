@@ -48,14 +48,12 @@ function geocodeAddress(geocoder, resultsMap) {
 
     // update nearby search 
     //var doglist = document.querySelector(".PetShopsContiner");
-    var ele = document.getElementById('dog-store');
-    ele.innerHTML = 'bye';
 
     request.location = results[0].geometry.location;
     service.textSearch(request,callback);
-    var elements = document.getElementsByClassName("dog-store");
+    var elements = document.getElementsByClassName("doggy-store");
     alert(elements.length);
-    $(".dog-store").remove();
+    $(".doggy-store").remove();
 
   });
 }
@@ -83,9 +81,32 @@ function callback(results, status) {
 
             // this creates clickable icons on the left
             var ele = document.createElement("li");
+
+
             var div = document.createElement("div");
             var divtext = document.createTextNode(place.name);
+            div.style.fontSize = '12px';
+            div.style.fontWeight = '700';
+            div.appendChild(divtext);
+            ele.appendChild(div);
+
+
             var placeicon = document.createElement("img");
+            placeicon.setAttribute("width",175);
+            placeicon.setAttribute("height",175);
+            placeicon.setAttribute("id","dog-store");
+            placeicon.style.borderRadius = '25px';
+            ele.appendChild(placeicon);
+
+            var addyDiv = document.createElement("div");
+            var addy = document.createTextNode(place.formatted_address);
+            addyDiv.style.fontSize = '10px';
+            addyDiv.setAttribute("width",100);
+            addyDiv.appendChild(addy);
+            ele.appendChild(addyDiv);
+
+            ele.setAttribute("class","doggy-store")
+
 
             if (place.photos != null) {
                 var photoURL = place.photos[0].getUrl({'maxWidth':200,'maxHeight':200});
@@ -93,17 +114,10 @@ function callback(results, status) {
             } else {
                 placeicon.setAttribute("src","https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=jamie-street-804226-unsplash.jpg");
             }
-            placeicon.setAttribute("width",175);
-            placeicon.setAttribute("height",175);
-            placeicon.setAttribute("id","dog-store");
-            placeicon.style.borderRadius = '25px';
-            ele.appendChild(divtext);
-            ele.appendChild(div);
-            ele.appendChild(placeicon);
-            ele.setAttribute("display","block");
-            ele.setAttribute("width",100);
+            
             item = document.getElementById('doggy-list');
             item.appendChild(ele);
+
 
             newmarker.addListener('click',function() {
               if (this.image != null) {
