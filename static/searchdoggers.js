@@ -83,15 +83,6 @@ function callback(results, status) {
             // this creates clickable icons on the left
             var ele = document.createElement("li");
 
-//             <div class="view overlay">
-//     <img src="https://mdbootstrap.com/img/Photos/Others/forest-sm.jpg" class="img-fluid " alt="smaple image">
-//     <div class="mask flex-center rgba-blue-light">
-//         <p class="white-text">Light overlay</p>
-//     </div>
-// </div>
-
-
-
             var div = document.createElement("div");
             var divtext = document.createTextNode(place.name);
             div.style.fontSize = '12px';
@@ -108,7 +99,6 @@ function callback(results, status) {
             ele.appendChild(placeicon);
 
 
-
             var addyDiv = document.createElement("div");
             var addy = document.createTextNode(place.formatted_address);
             addyDiv.style.fontSize = '10px';
@@ -116,18 +106,42 @@ function callback(results, status) {
             addyDiv.appendChild(addy);
             ele.appendChild(addyDiv);
 
+            var button = [];
+            let stname = place.name;
+            button[stname] = document.createElement("button");
+            button[stname].innerHTML = "Bookmark";
+            button[stname].style.fontSize = '10px';
+            button[stname].style.backgroundColor = 'salmon';
+            button[stname].style.borderRadius = '25px';
+            button[stname].style.marginLeft = '50px';
+            button[stname].setAttribute("id","bookmark");
 
-            var button = document.createElement("button");
-            button.innerHTML = "Bookmark";
-            button.style.fontSize = '10px';
-            button.style.backgroundColor = 'salmon';
-            button.style.borderRadius = '25px';
-            button.style.marginLeft = '50px';
-            ele.appendChild(button);
+            ele.appendChild(button[place.name]);
+            ele.setAttribute("class","doggy-store");
 
+            var check = document.createElement("img");
+            check.setAttribute("src","https://img.icons8.com/flat_round/26/000000/checkmark.png");
+            check.setAttribute("width",20);
+            check.style.marginLeft = '10px';
+            check.setAttribute("id",place.name);
+            check.style.visibility = "hidden";
+            ele.appendChild(check);
 
-            ele.setAttribute("class","doggy-store")
-
+            button[stname].addEventListener("click", function() {
+              var x = document.getElementById('myProfileBtn'); 
+                if (x === null) {
+                  alert('You need to login or make an account to perform that action.');
+                } else {
+                  //alert(stname);
+                  var checked = document.getElementById(stname);
+                  var checkStatus = (checked.style.visibility ==='hidden');
+                  if (checkStatus) {
+                    checked.style.visibility = 'visible';
+                  } else {  
+                    checked.style.visibility = 'hidden';
+                  }
+                }
+              });
 
             if (place.photos != null) {
                 var photoURL = place.photos[0].getUrl({'maxWidth':200,'maxHeight':200});
@@ -146,7 +160,6 @@ function callback(results, status) {
                    var content_str = ('<p id=infowindow>' + this.title + '</p>' +
                                       '<p id=infowindow>' + `<img src=${photoURL} align="middle">` + '</img>' + '</p>' +
                                       '<p id=infowindow>' + this.address + '</p>');
-
 
               } else {
                    var content_str = ('<p id=infowindow>' + this.title + '</p>' +
