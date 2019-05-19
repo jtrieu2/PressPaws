@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<head>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+
+<style>
+	li {
+        list-style-type: none;
+      }
+    .profile-card {
+    	margin-left: 20px;
+    	border-style: solid;
+    	border-color: gray;
+    	border-radius: 25px;
+    	width: 300px;
+    	text-align: center;
+
+    }
+	.profile-top {
+		width: 300px;
+	}
+	.profile-basic-info {
+		width: 300px;
+		margin-left: 15px;
+		text-align: left;
+		text-align: left;
+	}
+	.basic-info {
+		margin-left: 15px;
+	}
+</style>
+
+<div class="profile-card">
+	<!-- Profile Picture and Random Profile Picture Generator -->
+	<div class="profile-top">
+		<h1> Profile </h1>
+		<img style="border-radius: 25px"
+		id="avatar"
+		src={{user.url}} 
+		width = "250">
+		</img>
+		<p>
+			<p style="font-weight:bold">Randomly generate a new avator!</p>
+			<input id="get-avatar-btn" type="submit" value="generate">
+		</p>       
+	</div>
+	<!-- Profile Picture and Random Profile Picture Generator -->
+	<div class="profile-basic-info">
+		<li> <i class="fas fa-user"></i><label class="basic-info">{{user.fname}} {{user.lname}}</label></li>
+		<li> <i class="far fa-envelope"></i><label class="basic-info">{{user.email}}</label></li>
+		<li> <i class="fas fa-home"></i><label class="basic-info">{{user.zipcode}}</label></li>
+	</div>
+</div>
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="/static/profile.js"></script>
+
+
+{% endblock %}

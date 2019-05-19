@@ -26,11 +26,26 @@ class User(db.Model):
     email = db.Column(db.String(64), nullable=True)
     password = db.Column(db.String(64), nullable=True)
     zipcode = db.Column(db.String(15), nullable=True)
+    url = db.Column(db.String(300), nullable=True)
 
     def __repr__(self):
         """Provide helpful representation when printed."""
 
         return f"<User user_id={self.user_id} email={self.email}>"
+
+class Avatar(db.Model):
+
+    __tablename__ = "avatars"
+
+    avatar_id = db.Column(db.Integer,
+                            autoincrement=True,
+                            primary_key=True)
+    url = db.Column(db.String(300), nullable=True)
+
+    def __repr__(self):
+        """Provide helpful representation when printed."""
+
+        return f"<Avatar avatar_id={self.avatar_id} url={self.url}>"
 
 #####################################################################
 # Helper functions

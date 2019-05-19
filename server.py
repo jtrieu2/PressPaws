@@ -1,10 +1,11 @@
 from jinja2 import StrictUndefined
 
-from flask import Flask, render_template, request, flash, redirect, session, jsonify
+from flask import Flask, render_template, request, flash, redirect, session
 from flask_debugtoolbar import DebugToolbarExtension
 
-from model import connect_to_db, db, User
+from model import connect_to_db, db, User, Avatar
 
+import random
 
 
 app = Flask(__name__)
@@ -79,7 +80,7 @@ def registration_process():
 	db.session.commit()
 
 
-	return jsonify(email)
+	return render_template("landing.html")
 
 @app.route('/logout')
 def logout():
@@ -94,6 +95,31 @@ def logout():
 def search():
 
 	return render_template("search.html")
+
+@app.route('/profile')
+def profile():
+
+	if session.get('user_id',0) != 0:
+		user_id = session['user_id']
+
+	user = User.query.filter_by(user_id=user_id).first();
+	return render_template("profile.html", user=user)
+
+@app.route('/profile-change-avatar')
+def change_avatar():
+
+	rand_num = random.randint(1,17)
+	selected_avatar = Avatar.query.get(rand_num)
+	selected_url = selected_avatar.url
+
+	user_id = session["user_id"];
+	user = User.query.get(user_id);
+	user.url = selected_url
+	db.session.commit()
+	print('committed new profile pic')
+	return selected_url
+
+	
 
 
 
