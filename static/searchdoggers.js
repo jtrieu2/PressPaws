@@ -2,6 +2,7 @@ var service;
 var map;
 var request;
 var placeicon;
+var place;
 
 
 
@@ -14,149 +15,131 @@ function initMap() {
      zoom: 13
     });
 
-   var geocoder = new google.maps.Geocoder();
-
-    document.getElementById('submit').addEventListener('click', function() {
-    geocodeAddress(geocoder, map);
+    // converts user input of city or zipcode into latitude and longitude coordinates
+    var geocoder = new google.maps.Geocoder();
+    $("#submit").click(function() {
+      geocodeAddress(geocoder, map);
     });
+   
 
     // Create the places service.
-    //var new_location = geocodeAddress(geocoder,map);
     service = new google.maps.places.PlacesService(map);
     request = {
         location: newyork,
         radius: '200',
         query: 'Animal Adoption'
     };
-    //alert(request.location)
     service.textSearch(request,callback);
 
 }
 
 function geocodeAddress(geocoder, resultsMap) {
-  var address = document.getElementById('address').value;
+
+  var address = $("#address").val();
   geocoder.geocode({'address': address}, function(results, status) {
     if (status === 'OK') {
       resultsMap.setCenter(results[0].geometry.location);
-      // var marker = new google.maps.Marker({
-      //   map: resultsMap,
-      //   position: results[0].geometry.location
-      // });
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
-
-
-    // update nearby search 
-    //var doglist = document.querySelector(".PetShopsContiner");
-
     request.location = results[0].geometry.location;
     service.textSearch(request,callback);
-    var elements = document.getElementsByClassName("doggy-store");
-    alert(elements.length);
     $(".doggy-store").remove();
 
   });
 }
-
-
 
 function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
         var infowindow = new google.maps.InfoWindow();
         var bounds = new google.maps.LatLngBounds();
 
+        let newmarker = [];
+        const redmarker = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
+        const bluemarker = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+
         for (var i = 0; i < results.length; i++) {
 
             // this creates markers on the map
-            var place = results[i];
-            var newmarker = new google.maps.Marker({
+            let place = results[i];
+            newmarker[place.name] = new google.maps.Marker({
                 position: place.geometry.location,
                 map: map,
                 title: place.name,
                 address: place.formatted_address,
                 image: place.photos,
                 place_id: place.place_id,
+                icon: redmarker,
                 id: i
             });
-
-            // this creates clickable icons on the left
+      
             var ele = document.createElement("li");
 
-            var div = document.createElement("div");
-            var divtext = document.createTextNode(place.name);
-            div.style.fontSize = '12px';
-            div.style.fontWeight = '700';
-            div.appendChild(divtext);
-            ele.appendChild(div);
+            let store_title = [];
+            store_title[i] = $("<div>", {text: place.name, class: "storename"});
+            store_title[i].css({"fontWeight": 700, "width":175, "textAlign":"center"});
+            ele.append(store_title[i][0]);
 
+            let photoURL; 
+            if (place.photos != null) {
+                photoURL = place.photos[0].getUrl({'maxWidth':200,'maxHeight':200});
+            } else {
+                photoURL = "https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=jamie-street-804226-unsplash.jpg";
+            }
 
-            var placeicon = document.createElement("img");
-            placeicon.setAttribute("width",175);
-            placeicon.setAttribute("height",175);
-            placeicon.setAttribute("id","dog-store");
-            placeicon.style.borderRadius = '25px';
-            ele.appendChild(placeicon);
+            let place_icon = [];
+            place_icon[i] = $("<img>", {src: photoURL, class: "dogstoreimg", position: place.geometry.location});
+            place_icon[i].css({"borderRadius": "25px", "width": 175, "height": 175});
+            ele.append(place_icon[i][0]);
 
+            address[i] = $("<div>", {text: place.formatted_address});
+            address[i].css({"fontSize": "10px", "width": 175, "textAlign": "center"});
+            ele.append(address[i][0]);
 
-            var addyDiv = document.createElement("div");
-            var addy = document.createTextNode(place.formatted_address);
-            addyDiv.style.fontSize = '10px';
-            addyDiv.setAttribute("width",100);
-            addyDiv.appendChild(addy);
-            ele.appendChild(addyDiv);
+            let button = [];
+            button[i] = $("<button>", {text: "Bookmark", id: "bookmark"});
+            button[i].css({"backgroundColor": "salmon", "fontSize": "10px", "borderRadius": "25px", "textAlign": "center", "marginLeft": "45px"})
+            ele.append(button[i][0]);
 
-            var button = [];
-            let stname = place.name;
-            button[stname] = document.createElement("button");
-            button[stname].innerHTML = "Bookmark";
-            button[stname].style.fontSize = '10px';
-            button[stname].style.backgroundColor = 'salmon';
-            button[stname].style.borderRadius = '25px';
-            button[stname].style.marginLeft = '50px';
-            button[stname].setAttribute("id","bookmark");
-
-            ele.appendChild(button[place.name]);
             ele.setAttribute("class","doggy-store");
 
-            var check = document.createElement("img");
-            check.setAttribute("src","https://img.icons8.com/flat_round/26/000000/checkmark.png");
-            check.setAttribute("width",20);
-            check.style.marginLeft = '10px';
-            check.setAttribute("id",place.name);
-            check.style.visibility = "hidden";
-            ele.appendChild(check);
+            let check = [];
+            check[i] = $("<img>", {src: "https://img.icons8.com/flat_round/26/000000/checkmark.png", id: place.name});
+            check[i].css({"width":20, "marginLeft": "10px", "visibility": "hidden"});
+            ele.append(check[i][0])
+            
+            $.get("/search.json",function (results){
+              let names = results.name;
+              if (names.includes(place.name)) {
+                document.getElementById(place.name).style.visibility = "visible";
+              } 
+            })
 
-            button[stname].addEventListener("click", function() {
-              var x = document.getElementById('myProfileBtn'); 
-                if (x === null) {
+            let checkStatus;
+            button[i][0].addEventListener("click", function() {
+                if (document.getElementById('myProfileBtn') === null) {
                   alert('You need to login or make an account to perform that action.');
                 } else {
-                  //alert(stname);
-                  var checked = document.getElementById(stname);
-                  var checkStatus = (checked.style.visibility ==='hidden');
+                  let checked = document.getElementById(place.name)
+                  checkStatus = (checked.style.visibility ==='hidden');
                   if (checkStatus) {
                     checked.style.visibility = 'visible';
                   } else {  
                     checked.style.visibility = 'hidden';
                   }
                 }
+                let inputdata = {'message':'hello',
+                                  'store_name': place.name,
+                                  'store_address': place.formatted_address,
+                                  'store_photo': photoURL,
+                                  'check_status': checkStatus }
+                $.post("/grab-data-from-frontend", inputdata, function(){})
               });
 
-            if (place.photos != null) {
-                var photoURL = place.photos[0].getUrl({'maxWidth':200,'maxHeight':200});
-                placeicon.setAttribute("src", photoURL);
-            } else {
-                placeicon.setAttribute("src","https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=jamie-street-804226-unsplash.jpg");
-            }
-            
-            item = document.getElementById('doggy-list');
-            item.appendChild(ele);
+            $("#doggy-list").append(ele);
 
-
-            newmarker.addListener('click',function() {
+            newmarker[place.name].addListener('click',function() {
               if (this.image != null) {
-                   var photoURL = this.image[0].getUrl({'maxWidth':200,'maxHeight':200});
                    var content_str = ('<p id=infowindow>' + this.title + '</p>' +
                                       '<p id=infowindow>' + `<img src=${photoURL} align="middle">` + '</img>' + '</p>' +
                                       '<p id=infowindow>' + this.address + '</p>');
@@ -169,9 +152,19 @@ function callback(results, status) {
               infowindow.open(map,this);
             });
 
+             place_icon[i][0].addEventListener("mouseover", function() {
+              this.style.cursor = "pointer";
+              newmarker[place.name].setIcon(bluemarker);
+              map.setCenter(place.geometry.location);
+              map.zoom = 13;
+            });
+             place_icon[i][0].addEventListener("mouseout", function() {
+              newmarker[place.name].setIcon(redmarker);
+            });
+
+
             bounds.extend(place.geometry.location);
         }
-            
         map.fitBounds(bounds);
     }
 }

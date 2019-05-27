@@ -2,6 +2,7 @@
 
 from flask_sqlalchemy import SQLAlchemy
 
+
 # This is the connection to the PostgreSQL database; we're getting
 # this through the Flask-SQLAlchemy helper library. On this, we can
 # find the `session` object, where we do most of our interactions
@@ -46,6 +47,29 @@ class Avatar(db.Model):
         """Provide helpful representation when printed."""
 
         return f"<Avatar avatar_id={self.avatar_id} url={self.url}>"
+
+class Place(db.Model):
+
+    __tablename__ = "places"
+
+    place_id = db.Column(db.Integer, 
+                            autoincrement=True,
+                            primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    place_name = db.Column(db.String(300))
+    place_address = db.Column(db.String(500))
+    place_imURL = db.Column(db.String(1000))
+
+    user = db.relationship("User", 
+                            backref=db.backref("places", 
+                                               order_by=place_id))
+
+    def __repr__(self):
+        """Provide helpful representation when printed."""
+
+        return f"<Place place_id={self.place_id} place_name={self.place_name}>"
+
+
 
 #####################################################################
 # Helper functions

@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+       * { box-sizing: border-box; }
+
+    /* force scrollbar */
+    html { overflow-y: scroll; }
+
+    body { font-family: sans-serif; }
+
+    /* ---- grid ---- */
+
+    .grid {
+      background: #DDD;
+    }
+
+    /* clear fix */
+    .grid:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    /* ---- .grid-item ---- */
+    .grid-sizer,
+    .grid-item {
+      width: 33.333%;
+    }
+
+    .grid-item {
+      float: left;
+    }
+
+    .grid-item img {
+      display: block;
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+    <h1>Masonry - imagesLoaded progress</h1>
+
+    <div class="grid">
+      <div class="grid-sizer"></div>
+      {% for i in range(10) %}
+      <div class="grid-item">
+          <a href={{events[i].url}}><img src={{events[i].logo.original.url}} width=250> </a>
+      </div>
+      {% endfor %}
+
+    </div>
+    <script>
+        // init Masonry
+        var $grid = $('.grid').masonry({
+          itemSelector: '.grid-item',
+          percentPosition: true,
+          columnWidth: '.grid-sizer'
+        });
+        // layout Masonry after each image loads
+        $grid.imagesLoaded().progress( function() {
+          $grid.masonry();
+        });  
+    </script>
+</body>
+</html>

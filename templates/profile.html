@@ -10,7 +10,6 @@
         list-style-type: none;
       }
     .profile-card {
-    	margin-left: 20px;
     	border-style: solid;
     	border-color: gray;
     	border-radius: 25px;
@@ -30,29 +29,76 @@
 	.basic-info {
 		margin-left: 15px;
 	}
+
+	.events-container {
+	  	grid-template-columns: 250px;
+      	grid-auto-rows: 200px;
+      	grid-gap: 50px;
+      	overflow: auto;
+		/*background-color: #2196F3;*/
+		padding: 10px;
+		text-align: center;
+		height: 600px;
+	}
+
+	.card {
+		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+		transition: 0.3s;
+		width: 300px;
+	}
+
+	.card:hover {
+  		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	}
+
 </style>
 
-<div class="profile-card">
-	<!-- Profile Picture and Random Profile Picture Generator -->
-	<div class="profile-top">
-		<h1> Profile </h1>
-		<img style="border-radius: 25px"
-		id="avatar"
-		src={{user.url}} 
-		width = "250">
-		</img>
-		<p>
-			<p style="font-weight:bold">Randomly generate a new avator!</p>
-			<input id="get-avatar-btn" type="submit" value="generate">
-		</p>       
-	</div>
-	<!-- Profile Picture and Random Profile Picture Generator -->
-	<div class="profile-basic-info">
-		<li> <i class="fas fa-user"></i><label class="basic-info">{{user.fname}} {{user.lname}}</label></li>
-		<li> <i class="far fa-envelope"></i><label class="basic-info">{{user.email}}</label></li>
-		<li> <i class="fas fa-home"></i><label class="basic-info">{{user.zipcode}}</label></li>
+</style>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="profile-card">
+				<!-- Profile Picture and Random Profile Picture Generator -->
+				<div class="profile-top">
+					<h1> Profile </h1>
+					<img style="border-radius: 25px" id="avatar" src={{user.url}} width = "250"> </img>
+					<p><p style="font-weight:bold">Randomly generate a new avator!</p> <input id="get-avatar-btn" type="submit" value="generate"></p>       
+				</div>
+				<!-- Profile Picture and Random Profile Picture Generator -->
+				<div class="profile-basic-info">
+					<li> <i class="fas fa-user"></i><label class="basic-info">{{user.fname}} {{user.lname}}</label></li>
+					<li> <i class="far fa-envelope"></i><label class="basic-info">{{user.email}}</label></li>
+					<li> <i class="fas fa-home"></i><label class="basic-info">{{user.zipcode}}</label></li>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="events-container">
+				<h1> Saved Places </h1>
+					{% for place in places %}
+					<div class="card">
+						<p><b>{{place.place_name}}<b></p>
+						<img style="border-radius: 25px" id="avatar" src={{place.place_imURL}} width="250" height="250"></img>
+						<p> {{place.place_address}}
+						<p>
+					</div>
+					{% endfor %}
+			</div>	
+		</div>
+		<div class="col-sm-4">
+			<div class="events-container">
+				<h1> Saved Events </h1>
+				<div> <img style="border-radius: 25px" id="avatar" src={{user.url}} width = "250"> </img></div>
+				<div> <img style="border-radius: 25px" id="avatar" src={{user.url}} width = "250"> </img></div>
+				<div> <img style="border-radius: 25px" id="avatar" src={{user.url}} width = "250"> </img> </div>
+				<div> <img style="border-radius: 25px" id="avatar" src={{user.url}} width = "250"> </img></div>
+			</div>	
+		</div>
 	</div>
 </div>
+
+
+<!-- do a list, ajax, back end send stuff to here -->
 
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="/static/profile.js"></script>

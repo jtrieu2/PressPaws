@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+
+
+<style>
+.cards-container {
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+  text-align: center;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 300px;
+  height: auto;
+  background-color:#555;
+  color: white;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container-fluid {
+  padding: 2px 16px;
+  margin-left:50px;
+  margin-right:auto;
+}
+
+/*.like-btn:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  color:black;
+}*/
+
+.like-btn {
+  background-color:salmon;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container-fluid">
+  <h2>Find dog-friendly events near you and meet others in the community!</h2>
+  <!-- Search form -->
+  <form action="/events-search" method="POST">
+  <div class="input-group">
+      <input class="form-control" type="text" name="city" placeholder="San Francisco" aria-label="Search" style="width:500px">
+      <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span>Search</button>
+  </div>
+    </form>
+
+  <br></br>
+
+<div class="cards-container">
+  {% for event in events_list %}
+<div class="card">
+    <a href={{event.eventbrite_url}}><img src={{event.event_image}} alt="Avatar" style="width:100%"></a>
+    <button id={{event.event_id}} class="like-btn" style="width:100%"><i class="fa fa-heart"></i> LIKE </button>
+  <div >
+    <h4><b>{{event.event_name}}</b></h4> 
+    {% for line in event.event_address %}
+      <p>{{line}}</p> 
+    {% endfor %}
+    <p>{{event.event_date}}</p>
+    <div>
+      
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
+</div>
+
+<script>    
+    let likeButtons =  $('.like-btn');
+    console.log(likeButtons.length);
+    for (let i = 0; i < likeButtons.length; i++) {
+      let button = $(`#${likeButtons[i].id}`);
+      let inputdata;
+      button.click( function() {
+        if (button.css("color") === "rgb(0, 0, 0)") {
+          inputdata = {'event_id': button.attr('id'), 
+                      'database_action': 'remove' };
+          console.log(inputdata);
+          $.post("/grab-data-from-frontend", inputdata, function(){})
+          button.css("color","white");
+        } else {
+          inputdata = {'event_id': button.attr("id"),
+                       'database_action': 'add'};
+          $.post("/grab-data-from-frontend", inputdata, function(){})
+          button.css("color","black");
+        }
+      });
+    }
+
+  </script>
+{% endblock %}
