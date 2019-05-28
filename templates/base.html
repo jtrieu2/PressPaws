@@ -8,16 +8,19 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <style>n
-    #find-dog-btn{
-      margin-top: 15px;
-      margin-bottom: 25px;
-    }
-    .title {
-      font-family: 'Sofia', cursive;
-      font-size: 48px;
-    }
-    .modal-header, h4, .close {
+  <style>
+  /*.navbar {
+    background-color: black;
+  }*/
+ /* .container-fluid {
+    background-color: #FFEFD5;
+  }*/
+  #navbar {
+    background-color: blue;
+  }
+
+
+  .modal-header, h4, .close {
     background-color: #5bc0de;
     color:white !important;
     text-align: center;
@@ -27,30 +30,26 @@
     background-color: #5bc0de;
   }
 
-  .#myBtn {
-    margin: 100px;
-    padding: 100px;
-
-  }
   </style>
 </head>
 <body>
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Press Paws</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Home</a></li>
-      <li><a href="#">About Us</a></li>
-    </ul>
+  <nav class="navbar navbar-inverse" id=navbar>
+    <div class="container-fluid">
+      <div class="navbar-header"> <a class="navbar-brand" href="#">Press Paws</a></div>
+      <ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/search">Adoption Shelters</a></li>
+        <li><a href="/events-search">Community Events</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
     {% if session.get('user_id',0) != 0 %}
-        <ul class="nav navbar-nav navbar-right">   
+      <ul class="nav navbar-nav navbar-right">   
         <h style="color:#5bc0de;"> Welcome {{session['fname']}}!</h>
-        <a class="btn btn-info btn-lg" href="\profile" id="myProfileBtn">Profile</button>
+        <a class="btn btn-info btn-lg" href="\profile" id="myProfileBtn">Profile</a>
         <a class="btn btn-info btn-lg" href="\logout">Logout</a>
       </ul>
+    </div>
+  </nav>
     {% else %}
 
     <ul class="nav navbar-nav navbar-right">        
@@ -111,8 +110,9 @@
                   </div>
               </div>
   </ul>
-  {% endif %}
+</div>
 </nav>
+  {% endif %}
   <script>
     $(document).ready(function(){
       $("#myLoginBtn").click(function() {

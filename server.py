@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, flash, redirect, session, jso
 
 from flask_debugtoolbar import DebugToolbarExtension
 
-from model import connect_to_db, db, User, Avatar, Place
+from model import connect_to_db, db, User, Avatar, Place, Event
 
 from eventbrite import get_eventbrite_details, get_event_details
 import os
@@ -114,22 +114,28 @@ def search():
 	return render_template("search.html")
 
 @app.route('/search.json')
-def get_saved_places():
+def get_favorites():
 
 	user_id = session["user_id"]
 	# get the list of places saved by the user
 	saved_places_list = User.query.get(user_id).places
+	saved_events_list = User.query.get(user_id).events
 
 	store_names = []
+	events = []
 
 	for place in saved_places_list:
 		store_names.append(place.place_name)
 
-	place_names = {'name': store_names }
+	for event in saved_events_list:
+		events.append(event.eventbrite_id)
 
-	print(place_names)
+	saved_data = {'places': store_names,
+					'events': events }
 
-	return jsonify(place_names)
+	print(saved_data)
+
+	return jsonify(saved_data)
 
 
 @app.route('/profile')
@@ -142,8 +148,10 @@ def profile():
 
 	# grab all places from the database and display to users profile page
 	places = Place.query.all()
+	events = Event.query.all()
 	print(places)
-	return render_template("profile.html", user=user, places = places)
+	print(events)
+	return render_template("profile.html", user=user, places = places, events = events)
 
 @app.route('/profile-change-avatar')
 def change_avatar():
@@ -190,9 +198,19 @@ def showdata():
 
 	if request.form.get("event_id"):
 		event_id = request.form.get("event_id")
-		print(event_id)
+		db_action = request.form.get("database_action")
 		event_info = get_event_details(event_id)
-		print(event_info)
+
+		if db_action == 'add':
+			new_event = Event(user_id = user_id, eventbrite_id = event_info['event_id'], event_name = event_info['event_name'], event_address = event_info['event_address'],
+								event_date = event_info['event_date'], event_imURL = event_info['event_image'])
+			db.session.add(new_event)
+			print('added to database')
+		else:
+			Event.query.filter_by(user_id = user_id, event_name=event_info['event_name']).delete()
+			print('database entry deleted')
+
+	db.session.commit()
 
 	return 'helllo'
 

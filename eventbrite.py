@@ -74,8 +74,9 @@ def get_event_details(event_id):
 	data = response.json()
 	event_info = {}
 	if response.ok: 
+		event_info['event_id'] = data['id']
 		event_info['event_name'] = data['name']['text']
-		event_info['event_address'] = data['venue']['address']['localized_multi_line_address_display']
+		event_info['event_address'] = data['venue']['address']['localized_address_display']
 		event_info['eventbrite_url'] = data['url']
 		event_info['event_date'] = (data['start']['local']).split('T')[0]
 		event_info['event_image'] = data['logo']['original']['url']

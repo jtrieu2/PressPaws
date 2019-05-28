@@ -69,6 +69,24 @@ class Place(db.Model):
 
         return f"<Place place_id={self.place_id} place_name={self.place_name}>"
 
+class Event(db.Model):
+
+    __tablename__ = "events"
+
+    event_id = db.Column(db.Integer,
+                            autoincrement=True,
+                            primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    eventbrite_id = db.Column(db.String(500))
+    event_name = db.Column(db.String(300))
+    event_address = db.Column(db.String(500))
+    event_date = db.Column(db.String(100))
+    event_imURL = db.Column(db.String(1000))
+
+    user = db.relationship("User", 
+                        backref=db.backref("events", 
+                                           order_by=event_id))
+
 
 
 #####################################################################

@@ -13,6 +13,7 @@
   display: grid;
   grid-template-columns: auto auto auto auto;
   grid-gap: 10px;
+  padding: 100px;
   text-align: center;
 }
 
@@ -23,75 +24,75 @@
   height: auto;
   background-color:#555;
   color: white;
+  text-align: center;
 }
 
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.container-fluid {
+/*.container-fluid {
   padding: 2px 16px;
   margin-left:50px;
   margin-right:auto;
-}
-
-/*.like-btn:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  color:black;
 }*/
 
 .like-btn {
   background-color:salmon;
   color: white;
-  font-size: 16px;
-  padding: 12px 24px;
-  border: none;
   cursor: pointer;
   border-radius: 5px;
   text-align: center;
 }
 
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
 </style>
 </head>
-<body>
+
 
 <div class="container-fluid">
-  <h2>Find dog-friendly events near you and meet others in the community!</h2>
-  <!-- Search form -->
-  <form action="/events-search" method="POST">
-  <div class="input-group">
-      <input class="form-control" type="text" name="city" placeholder="San Francisco" aria-label="Search" style="width:500px">
-      <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span>Search</button>
-  </div>
+    <h2 style="padding:50px">Find dog-friendly events near you and meet others in the community!</h2>
+    <!-- Search form -->
+    <form action="/events-search" method="POST">
+      <div class="input-group" style="padding:50px">
+          <input class="form-control" type="text" name="city" placeholder="San Francisco" aria-label="Search" style="width:500px">
+          <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span>Search</button>
+      </div>
     </form>
 
-  <br></br>
+    <br></br>
 
-<div class="cards-container">
-  {% for event in events_list %}
-<div class="card">
-    <a href={{event.eventbrite_url}}><img src={{event.event_image}} alt="Avatar" style="width:100%"></a>
-    <button id={{event.event_id}} class="like-btn" style="width:100%"><i class="fa fa-heart"></i> LIKE </button>
-  <div >
-    <h4><b>{{event.event_name}}</b></h4> 
-    {% for line in event.event_address %}
-      <p>{{line}}</p> 
-    {% endfor %}
-    <p>{{event.event_date}}</p>
-    <div>
-      
-    </div>
-  </div>
+    <div class="cards-container">
+        {% for event in events_list %}
+        <div class="card">
+            <a href={{event.eventbrite_url}}><img src={{event.event_image}} alt="Avatar" style="width:100%"></a>
+            <button id={{event.event_id}} class="like-btn" style="width:100%"><i class="fa fa-heart"></i> LIKE </button>
+            <h4><b>{{event.event_name}}</b></h4> 
+            {% for line in event.event_address %}
+              <p>{{line}}</p> 
+            {% endfor %}
+              <p>{{event.event_date}}</p>
+        </div>
+          {% endfor %}
+      </div>
 </div>
-{% endfor %}
-</div>
-</div>
+
+
 
 <script>    
+   $.get("/search.json",function (results){
+    let ids = results.events;
     let likeButtons =  $('.like-btn');
-    console.log(likeButtons.length);
+
     for (let i = 0; i < likeButtons.length; i++) {
+
       let button = $(`#${likeButtons[i].id}`);
+      if (ids.includes(button.attr('id'))) {
+        button.css("color", "black");
+      }
+
       let inputdata;
       button.click( function() {
         if (button.css("color") === "rgb(0, 0, 0)") {
@@ -108,6 +109,7 @@
         }
       });
     }
-
+   })
+     
   </script>
 {% endblock %}

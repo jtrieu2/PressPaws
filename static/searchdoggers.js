@@ -109,8 +109,8 @@ function callback(results, status) {
             ele.append(check[i][0])
             
             $.get("/search.json",function (results){
-              let names = results.name;
-              if (names.includes(place.name)) {
+              let places = results.places;
+              if (places.includes(place.name)) {
                 document.getElementById(place.name).style.visibility = "visible";
               } 
             })
