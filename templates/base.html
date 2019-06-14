@@ -28,11 +28,15 @@
     padding-right: 10px;
     font-size: 20px;
     color: #5bc0de;
+    margin-left: 10px;
   }
   .link{
-    padding-left: 0;
-    margin-left:15px;
-    font-size:15px;
+  padding-left: 0;
+  margin-left:15px;
+  font-size:15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size:20px;
   }
 
 .link:after{
@@ -55,10 +59,18 @@
 
 .navbar-brand {
   font-family: 'Shadows Into Light';
+  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.nav-elements {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
 }
 
-
   </style>
+
 </head>
 <body>
   <nav class="navbar navbar-inverse" id=navbar style="margin-bottom:0">
@@ -71,19 +83,22 @@
       </ul>
     {% if session.get('user_id',0) != 0 %}
       <ul class="nav navbar-nav navbar-right">   
-        <h style="color:#5bc0de;"> Welcome {{session['fname']}}!</h>
-        {% if session.current_page == '/profile' %}
-        <a class="btn btn-info btn-lg active" href="\profile" id="myProfileBtn">Profile</a>
-        {% else %}
-        <a class="btn btn-info btn-lg" href="\profile" id="myProfileBtn">Profile</a>
-        {% endif %}
-        <a class="btn btn-info btn-lg" href="\logout">Logout</a>
-        <a id="demo-btn" href='/'><i class="fas fa-user-circle"></i>Demo</a>
+        <div class="nav-elements">
+          <h style="color:#5bc0de; font-size: 20px; margin-right: 10px"> Welcome {{session['fname']}}!</h>
+          {% if session.current_page == '/profile' %}
+          <a class="btn btn-info btn-lg active" href="\profile" id="myProfileBtn">Profile</a>
+          {% else %}
+          <a class="btn btn-info btn-lg" href="\profile" id="myProfileBtn">Profile</a>
+          {% endif %}
+          <a class="btn btn-info btn-lg" href="\logout">Logout</a>
+          <a id="demo-btn" href='/'><i class="fas fa-user-circle"></i>Demo</a>
+        </div>
       </ul>
     </div>
   </nav>
     {% else %}
-    <ul class="nav navbar-nav navbar-right">        
+    <ul class="nav navbar-nav navbar-right">       
+      <div class="nav-elements">
       <button type="button" class="btn btn-info btn-lg" id="myLoginBtn">Login</button>
                    <!-- Modal -->
             <div class="modal fade" id="loginModal" role="dialog">
@@ -140,6 +155,7 @@
                   </div>
               </div>
         <a id="demo-btn" href='/'><i class="fas fa-user-circle"></i>Demo</a>
+      </div>
   </ul>
 </div>
 </nav>

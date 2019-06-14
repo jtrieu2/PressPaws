@@ -8,6 +8,7 @@
   font-size: 30px;
   font-family:'Shadows Into Light';
   background-color: brown;
+  margin-bottom: 100px;
 }
 #events-container {
   background-color:moccasin;
@@ -19,6 +20,8 @@
   grid-gap: 40px;
   text-align: center;
   padding-bottom: 100px;
+  margin-left:125px;
+  margin-right:100px;
 }
 .card {
   transition: 0.3s;
@@ -90,7 +93,12 @@
 <div class="container-fluid" id="events-container">
 
   <div class="events-header">
-    <h1>Find dog-friendly events near you and meet others in the community!</h1>
+    
+    <h1 style="color:white">
+      <i style="color:green"class="fas fa-leaf"></i>
+      Find dog-friendly events near you and meet others in the community!
+      <i style="color:green"class="fas fa-leaf"></i>
+    </h1>
     <!-- Search form -->
     <form action="/events-search" method="POST">
       <div class="input-group">

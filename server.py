@@ -250,6 +250,7 @@ def showdata():
 def showevents_process():
 	"""Events Listing Page. Page defaults to events listed in SF but also
 	allows user to search for events in other cities too."""
+	session['current_page'] = '/events-search'
 
 	# Default events page
 	if  request.method == 'GET':
