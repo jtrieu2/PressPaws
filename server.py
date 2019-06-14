@@ -35,30 +35,44 @@ def show_homepage():
     session["registration_elements"] = registration_elements
     session["registration_titles"] = registration_titles
     session["current_page"] = '/'
-    
-    [events, event_ids] = get_eventbrite_details(city = 'San Francisco', num_events = 8)
+        # [events, event_ids] = get_eventbrite_details(city = 'San Francisco', num_events = 8)
+    events = []
+    event_ids = []
+
+    if session.get('user_id',0):
+    	print(session['user_id'])
+
 
     return render_template("landing.html", events = events, event_ids = event_ids)
 
-@app.route('/landing-login', methods=['POST'])
+@app.route('/landing-login', methods=['GET','POST'])
 def landing_login_process():
 	"""Login Process"""
 
-	# Get form variables
-	email = request.form['email']
-	password = request.form['password']
+	# If a user logs in (not with the demo account)
+	if request.method == 'POST' and not request.form.get('clicked'):
+		# Get form variables
+		email = request.form['email']
+		password = request.form['password']
 
-	user = User.query.filter_by(email=email).first()
+		user = User.query.filter_by(email=email).first()
 
-	# If no user exists or if the password does not
-	# match with the registered username, redirect to homepage.
-	if not user or user and user.password != password:
-		return redirect('/')
+		# If no user exists or if the password does not
+		# match with the registered username, redirect to homepage.
+		if not user or user and user.password != password:
+			return redirect('/')
 
-	# If user login is successful, update session variables.
-	if user and user.password == password:
-		session["user_id"] = user.user_id
-		session["fname"] = user.fname		
+		# If user login is successful, update session variables.
+		if user and user.password == password:
+			session["user_id"] = user.user_id
+			session["fname"] = user.fname	
+
+	# If user clicks on demo account button
+	elif request.form.get('clicked') == 'yes':
+		user = User.query.get(1)
+		session['user_id'] = user.user_id
+		session['fname'] = user.fname
+		session['demo'] = 'active'
 
 	# Grab eventbrite details to display on homepage
 	# [events, event_ids] = get_eventbrite_details(city = 'New York', num_events = 8)
@@ -94,8 +108,11 @@ def logout():
     """Log out."""
 
     del session["user_id"]
+    if session.get('demo',0):
+    	del session['demo']
+
     if session['current_page'] == '/profile':
-    	return redirect(session['/'])
+    	return redirect('/')
     else:
     	return redirect(session['current_page'])
 
@@ -166,7 +183,7 @@ def change_avatar():
 	change to the database"""
 
 	# Randomly select a number from 1-17 that represents that id of the Avatar images
-	selected_avatar = Avatar.query.get(random.int(1,17))
+	selected_avatar = Avatar.query.get(random.randint(1,17))
 	selected_url = selected_avatar.url
 
 	# Get the current user's profile picture and reassign the value

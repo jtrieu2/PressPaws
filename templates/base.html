@@ -24,29 +24,65 @@
   .modal-footer {
     background-color: #5bc0de;
   }
+  #demo-btn {
+    padding-right: 10px;
+    font-size: 20px;
+    color: #5bc0de;
+  }
+  .link{
+    padding-left: 0;
+    margin-left:15px;
+    font-size:15px;
+  }
+
+.link:after{
+  content: '';
+  position: absolute;
+  width: 0; height: 3px;
+  display: block;
+  margin-top: 5px;
+  right: 0;
+  background: #fff;
+  transition: width .2s ease;
+  -webkit-transition: width .2s ease;
+}
+ 
+.link:hover:after{
+  width: 100%;
+  left: 0;
+  background: #fff;
+}
+
+.navbar-brand {
+  font-family: 'Shadows Into Light';
+}
+
 
   </style>
 </head>
 <body>
   <nav class="navbar navbar-inverse" id=navbar style="margin-bottom:0">
     <div class="container-fluid">
-      <div class="navbar-header"> <a class="navbar-brand" href="#">Press Paws</a></div>
+      <div class="navbar-header"> <p class="navbar-brand">Press Paws</p></div>
       <ul class="nav navbar-nav">
-        <li><a href="/">Home</a></li>
-        <li><a href="/search">Adoption Shelters</a></li>
-        <li><a href="/events-search">Community Events</a></li>
-        <li><a href="#">About Us</a></li>
+        <li><a class="link" href="/">Home</a></li>
+        <li><a class="link" href="/search">Adoption Shelters</a></li>
+        <li><a class="link" href="/events-search" width=auto>Community Events</a></li>
       </ul>
     {% if session.get('user_id',0) != 0 %}
       <ul class="nav navbar-nav navbar-right">   
         <h style="color:#5bc0de;"> Welcome {{session['fname']}}!</h>
+        {% if session.current_page == '/profile' %}
+        <a class="btn btn-info btn-lg active" href="\profile" id="myProfileBtn">Profile</a>
+        {% else %}
         <a class="btn btn-info btn-lg" href="\profile" id="myProfileBtn">Profile</a>
+        {% endif %}
         <a class="btn btn-info btn-lg" href="\logout">Logout</a>
+        <a id="demo-btn" href='/'><i class="fas fa-user-circle"></i>Demo</a>
       </ul>
     </div>
   </nav>
     {% else %}
-
     <ul class="nav navbar-nav navbar-right">        
       <button type="button" class="btn btn-info btn-lg" id="myLoginBtn">Login</button>
                    <!-- Modal -->
@@ -103,6 +139,7 @@
                             </div>
                   </div>
               </div>
+        <a id="demo-btn" href='/'><i class="fas fa-user-circle"></i>Demo</a>
   </ul>
 </div>
 </nav>
@@ -121,7 +158,10 @@
       });
     });
 
-
+    $('#demo-btn').click( function() {
+      $.post("/landing-login", {'clicked':'yes'});
+        alert('Woof!');
+    });
     </script>
   <!-- <script src="/static/landing.js"></script> -->
 

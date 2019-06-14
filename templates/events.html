@@ -8,9 +8,7 @@
   font-size: 30px;
   font-family:'Shadows Into Light';
   background-color: brown;
-
 }
-
 #events-container {
   background-color:moccasin;
   text-align: center;
@@ -185,7 +183,6 @@
         };
         let inputdata;
         button.click( function() {
-          console.log('hi')
           if (button.css("color") === "rgb(0, 0, 0)") {
             inputdata = {'event_id': button.attr('id'), 
                         'database_action': 'remove' };
@@ -200,6 +197,11 @@
           }
         });
       }
+      button.click( function() {
+        if (ids == null) {
+          alert('Please login or create an account to perform that action.')
+        }
+      })
     }
    })
      

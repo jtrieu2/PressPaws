@@ -6,14 +6,20 @@
 </head>
 
 <style>
+	html, body {
+  	width: 100%;
+  	height: 100%;
+  	background-color: linen;
+	}
 	li {
         list-style-type: none;
       }
     #profile-container {
-    	padding-left: 150px;
-    	padding-right:150px;
+    	margin-left: 225px;
+    	margin-right:200px;
     	padding-bottom: 25px;
     	background-color:linen;
+    	text-align: center;
     }
     .profile-card {
     	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -28,6 +34,7 @@
     	width: 300px;
     	font-size: 30px;
     	font-family: 'Shadows Into Light';
+    	text-align: center;
     }
 	.profile-top {
 		width: 300px;
@@ -52,26 +59,47 @@
 		padding: 10px;
 		text-align: center;
 		max-height: 500px;
+		width: 400px;
 		overflow: auto;
 	}
-
 	.card {
 		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 		transition: 0.3s;
-		width: 300px;
+		width: 275px;
 		border-radius: 25px;
+		background-color: moccasin;
+		margin: 25px;
 	}
-
 	.card:hover {
   		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	}
+	.card-names {
+		font-weight: bold;
+		padding-top: 10px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.email-modal {
+		color:black;
+		background-color:white;
+	}
+	.bookmark {
+		border-radius: 25px;
+		max-width: 300px;
+		max-height: 150px;
+	}
+	.email-btn {
+		width: 350px;
+		margin-top: 25px;
 	}
 
 </style>
 
 </style>
 <div class="container-fluid" id = "profile-container">
+	<!-- Profile Column -->
 	<div class="row">
-		<div class="col-sm-4" style="text-align:center">
+		<div class="col-sm-4">
 			<h1 class="profile-headers"> Profile </h1>
 			<div class="profile-card">
 				<!-- Profile Picture and Random Profile Picture Generator -->
@@ -90,25 +118,31 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-4" style="text-align:center">
+
+		<!-- Bookmarked Shelters Column -->
+		<div class="col-sm-4">
 			<h1 class="profile-headers"> Saved Places </h1>
 			<div class="events-container">
 					{% for place in places %}
-					<div class="card" style="background-color:moccasin">
-						<p>{{place.place_name}}</p>
-						<img style="border-radius: 25px; max-width: 300px; max-height: 150px" id="avatar" src={{place.place_imURL}}></img>
+					<div class="card">
+						<p class="card-names">{{place.place_name}}</p>
+						<img class="bookmark" id="avatar" src={{place.place_imURL}}></img>
 						<p> {{place.place_address}}</p>
+						{% if place.place_website %}
 						<p><a href={{place.place_website}}>{{place.place_website}}</a></p>
-						{% if place.place_hours %}
-							{% for items in place.place_hours %}
-								<li>{{items}}</li>
-							{% endfor %}
+						{% else %}
+						<p><a href={{place.place_website}}>No website listed.</a></p>
 						{% endif %}
+							{% if place.place_hours %}
+								{% for items in place.place_hours %}
+									<li>{{items}}</li>
+								{% endfor %}
+							{% endif %}
 					</div>
 					{% endfor %}
 			</div>
-			<div style="width:300px">
-				<button style="margin-top: 25px" type="submit" class="btn btn-primary" data-toggle="modal" data-target=#emailsheltermodal>
+			<div class="email-btn">
+				<button type="submit" class="btn btn-primary" data-toggle="modal" data-target=#emailsheltermodal>
 				<span class="glyphicon glyphicon-envelope"></span> Share Favorite Shelters</button>
 			</div>
 
@@ -124,7 +158,7 @@
                     </div>
                     <div class="share" style="color:black">
                       <form action="/share-favorite-shelters" method="POST">
-                      <p style="color:black; background-color:white"></p>
+                      <p class="email-modal"></p>
                       <input type="text" name="user_email" class="form" placeholder="Your email">
                       <input type="text" name="recipient_email" class="form" placeholder="Recipient email">
                       <div style="padding:15px"> <button type="submit" class="btn btn-primary">Share</button> </div>
@@ -137,21 +171,21 @@
 
 
 		</div>
-		<div class="col-sm-4" style="text-align:center">
+		<div class="col-sm-4">
 			<h1 class="profile-headers"> Saved Events </h1>
 			<div class="events-container">
 				{% for event in events %}
-				<div class="card" style="background-color:moccasin">
-					<p>{{event.event_name}}</p>
-					<div> <img style="border-radius: 25px; max-width: 300px; max-height: 200px" id="avatar" src={{event.event_imURL}}> </img></div>
+				<div class="card">
+					<p class="card-names">{{event.event_name}}</p>
+					<div> <img class="bookmark" id="avatar" src={{event.event_imURL}}> </img></div>
 					<p>{{event.event_address}}</p>
 					<p>{{event.event_date}}</p>
 					<p><a href={{event.event_website}}>Click here to RSVP on Eventbrite.</a></p>
 				</div>
 				{% endfor %}
 			</div>
-			<div style="width:300px">
-				<button style="margin-top: 25px" type="submit" class="btn btn-primary" data-toggle="modal" data-target=#emaileventsmodal>
+			<div class="email-btn">
+				<button type="submit" class="btn btn-primary" data-toggle="modal" data-target=#emaileventsmodal>
 					<span class="glyphicon glyphicon-envelope"></span> Share Favorite Events</button>
 			</div>
 
