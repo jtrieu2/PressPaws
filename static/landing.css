@@ -1,0 +1,71 @@
+#find-dog-btn{
+  margin-top: 0px;
+  margin-bottom: 25px;
+}
+.title {
+  font-family: 'Sofia', cursive;
+  font-size: 48px;
+}
+.pawbutton {
+  font-size: 50px;
+  color: brown;
+}
+.communitybutton {
+  font-size:50px;
+  color: goldenrod;
+}
+.connectionbutton {
+  font-size:50px;
+  color: steelblue;
+}
+.carousel-caption {
+  position: absolute;
+  top: -25px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+  padding: 10px;
+}
+.grid-container > div {
+  text-align: center;
+  font-size: 30px;
+}
+.logo {
+  position: absolute;
+  text-align: center;
+  color: white;
+  font-size:60px;
+  font-family:'Shadows Into Light';
+  font-weight:bold;
+  left: 75%;
+  top: 55%;
+}
+#websiteguide {
+  margin-bottom: 35px;
+  background-color: moccasin;
+  text-align: center;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+#adoptionshelterusecase {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-family: 'Shadows Into Light';
+  padding-left: 100px;
+  padding-right: 100px;
+}
+#eventsusecase {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-family: 'Shadows Into Light';
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.carousel-caption-description {
+  font-size:20px;
+  font-weight: bold;
+}
