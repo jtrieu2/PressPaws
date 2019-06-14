@@ -1,112 +1,189 @@
 {% extends 'base.html' %}
 {% block content %}
+<head>
+  <link rel="stylesheet" type="text/css" href="/static/landing.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
 
-<style>
-  #find-dog-btn{
-      margin-top: 15px;
-      margin-bottom: 25px;
-    }
-    .title {
-      font-family: 'Sofia', cursive;
-      font-size: 48px;
-    }
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  grid-gap: 10px;
-  /*background-color: #2196F3;*/
-  padding: 10px;
-}
+<!-- Top of Landing Page with Background Video and PressPaws Logo Overlaid -->
+<div class="background-video">
+  <!-- Background Video -->
+  <video style="width:100%" autoplay loop muted>
+  <source src="/static/Dog-and-Fly.mp4" type="video/mp4" />
+  </video>
+  <!-- Logo Design -->
+  <div class=logo>
+    <p>Press Paws<p>
+    <i class="fas fa-paw" style="font-size: 60px"></i>
+    <i class="fas fa-pause" style="color:orange; font-size: 15px; position:absolute; left:45%; top: 70%"></i>
+  </div>
+</div>
 
-.grid-container > div {
-  /*background-color: rgba(255, 255, 255, 0.8);*/
-  /*border: 1px solid black;*/
-  text-align: center;
-  font-size: 30px;
-</style>
-
+<!-- Div Container for the rest of the landing page design -->
 <div class="container-fluid">
-  <h2 class="title">Paws N Reflect</h2>  
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-      <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
+<!-- Website use cases and their descriptions -->
+<div class="row" id="websiteguide">
+    <div class="col-sm-4">
+        <h1>Adopt A Dog</h1> <br>
+        <p>Thousands of pets are looking for people. People like you. Find your match today. </p>
+        <div class="pawbutton"><i class="fas fa-paw"></i></div>
+    </div>
+    <div class="col-sm-4">
+        <h1>Build Community</h1>
+        <p>Whether or not you own a dog, we'd love for you to be part of our family. Meet other members at dog friendly events near you!</p>
+        <div class="communitybutton"><i class="fas fa-users"></i></div>
+    </div>
+    <div class="col-sm-4">
+        <h1>Stay Connected</h1>        
+        <p>Build a profile to save your favorite shelters and events. Share likes with friends.</p>
+        <div class="connectionbutton"><i class="fas fa-share-alt"></i></div>
+    </div>
+</div>
 
-  <!-- Making the background color of the carousel container yellow -->
-  <div class="p-3 mb-2 bg-warning text-dark">
-    <!-- Wrapper for slides -->
+<!-- Portion of landing page that describes that adoption shelter feature: Two column layout: left = boostrap carousel, right = video iframe -->
+<div class="row" id="adoptionshelterusecase">
 
-    <div class="carousel-inner">
-      <div class="item active">
-        <img class="center-block" src="https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=jamie-street-804226-unsplash.jpg" width="600">
-         <div class="carousel-caption">
-          <h3><font color="FFDF00">I bet you didnt know.</font></h3>
-          <p> The best therapist has four legs and fur.</p>
+    <h1> Make a difference in a dog's life. A lifetime of adventure awaits. </h1>
+
+    <!-- Bootstrap Carousel that describes the benefits of having a dog -->
+    <div class="col-sm-6">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+          </ol>
+
+        <!-- Making the background color of the carousel container yellow -->
+        <div class="p-3 mb-2 bg-warning text-dark">
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" style="height:315px">
+            <div class="item active">
+              <img class="center-block" src="https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=jamie-street-804226-unsplash.jpg">
+               <div class="carousel-caption">
+                <h1><font color="FFDF00">I bet you didnt know.</font></h1>
+                <p class="carousel-caption-description"> The best therapist has four legs and fur.</p>
+              </div>
+            </div>
+            <div class="item">
+              <img class="center-block" src="https://images.unsplash.com/photo-1522276498395-f4f68f7f8454?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=eric-ward-610868-unsplash.jpg">
+              <div class="carousel-caption">
+                <h1><font color="FFDF00">Unconditional Love.</font></h1>
+                <p class="carousel-caption-description">I love you 3000.</p>
+              </div>
+            </div>
+            <div class="item">
+              <img class="center-block" src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=ipet-photo-1316903-unsplash.jpg">
+                <div class="carousel-caption">
+                <h1><font color="FFDF00">There's never a dull moment.</font></h1>
+                <p class="carousel-caption-description"> Oh, squirrel!</p>
+              </div>
+            </div>
+            <div class="item">
+              <img class="center-block" src="https://images.unsplash.com/photo-1489440543286-a69330151c0b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=patrick-hendry-221863-unsplash.jpg">
+                <div class="carousel-caption">
+                <h1><font color="FFDF00">Lifelong Companionship.</font></h1>
+                <p class="carousel-caption-description">I love you, fur-ever!</p>
+              </div>
+            </div>
+         </div>
+
+          <!-- Left and right controls -->
+          </div id="controls">
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+
+          <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
+
       </div>
-      <div class="item">
-        <img class="center-block" src="https://images.unsplash.com/photo-1522276498395-f4f68f7f8454?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=eric-ward-610868-unsplash.jpg" width="600">
-        <div class="carousel-caption">
-          <h3><font color="FFDF00">Unconditional Love.</font></h3>
-          <p>I love you 3000.</p>
-        </div>
+
+      <!-- Pet Adoption video describing the physical and mental health benefits of pet adoption -->
+      <div class="col-sm-6">
+        <iframe width="500" height="315" src="https://www.youtube.com/embed/gmkxp6Iq3hU" 
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+        </iframe>
       </div>
-      <div class="item">
-        <img class="center-block" src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=ipet-photo-1316903-unsplash.jpg" width="600">
-          <div class="carousel-caption">
-          <h3><font color="FFDF00">There's never a dull moment.</font></h3>
-          <p> Oh, squirrel!</p>
-        </div>
+
+      <!-- Hoverable Dog Icons to illustrate that kinds of dogs available at dog shelters -->
+      <svg width="400" height=200 style="margin-bottom:0px">
+        <svg id="dogpic">
+          <defs> <clipPath id="dog1"><circle cy="100" cx="80" r="60" /></clipPath></defs>
+          <image width="40%" height="100%"
+           xlink:href="https://images.unsplash.com/photo-1514984879728-be0aff75a6e8?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=jamie-street-499878-unsplash.jpg" clip-path="url(#dog1)" /> 
+        </svg>
+        <svg id="dogpic">
+        <defs> <clipPath id="dog2"><circle cy="100" cx="160" r="60" /></clipPath></defs>
+        <image width="65%" height="100%"
+         xlink:href="https://images.unsplash.com/photo-1447684808650-354ae64db5b8?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=jairo-alzate-45522-unsplash.jpg" clip-path="url(#dog2)" /> 
+       </svg>
+       <svg id="dogpic">
+        <defs> <clipPath id="dog3"><circle cy="100" cx="240" r="60" /></clipPath></defs>
+        <image width="125%" height="100%"
+         xlink:href="https://images.unsplash.com/photo-1534628526458-a8de087b1123?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=nikolay-tchaouchev-785309-unsplash.jpg" clip-path="url(#dog3)" /> 
+       </svg>
+       <svg id="dogpic">
+        <defs> <clipPath id="dog4"><circle cy="100" cx="320" r="60" /></clipPath></defs>
+        <image width="165%" height="90%"
+         xlink:href="https://images.unsplash.com/photo-1531842477197-54acf89bff98?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=angelos-michalopoulos-742054-unsplash.jpg" clip-path="url(#dog4)" /> 
+       </svg>
+
+      <!-- Button enabling search search for nearby adoption shelters-->
+      <div id="find-dog-btn" class="row text-center">
+          <a style="font-size:30px" class="btn btn-info" href="/search">Find an adoption center!</a>
       </div>
-    
-      <div class="item">
-        <img class="center-block" src="https://images.unsplash.com/photo-1489440543286-a69330151c0b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=patrick-hendry-221863-unsplash.jpg" width="600">
-          <div class="carousel-caption">
-          <h3><font color="FFDF00">Lifelong Companionship.</font></h3>
-          <p>I love you, fur-ever!</p>
-        </div>
-      </div>
+</div>
+
+<!-- Portion of landing page that describes the events feature: Grid layout display sample events -->
+<div id="eventsusecase">
+
+  <h1>
+    <i style="color:green"class="fas fa-leaf"></i>
+    Explore new experiences. Dive into adventure.
+    <i style="color:green" class="fas fa-leaf"></i>
+  </h1>
+
+  <!-- Grid container of sample nearby dog friendly events -->
+  <div class="grid-container" >
+    {% if events %}
+    {% for event in events %}
+    <div>
+      <p style="font-size:20px; font-family: 'Amatic SC', cursive">{{event.event_name}}</p>
+     <a href={{event.eventbrite_url}}><img src={{event.event_image}} style="max-width:250px; max-height:200px"> </a>
    </div>
-
-    <!-- Left and right controls -->
-    </div id="controls">
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
+    {% endfor %}
+    {% endif %}
   </div>
 
-  <!-- Find dog nearby button -->
-  <br> </br>
-  <div id="find-dog-btn" class="row text-center">
-    <a class="btn btn-info" href="/search">Find a dog near you!</a>
+  <!-- Button enabling search for nearby dog-friendly events -->
+  <div id="find-dog-events-btn" class="row text-center">
+      <a style="font-size:30px" class="btn btn-info" href="/events-search">Explore experiences nearby!</a>
   </div>
+<div>
 
-<h1>Explore new experiences. Dive into adventure. </h1>
+<div>
+  <script>
+  d3.selectAll("#dogpic").on("mouseover", function(){
+        d3.select(this).raise();
+  });
+  d3.selectAll("#dogpic").on("mouseout", function() {
+        d3.select(this).style("opacity",1);
 
-<p>Create memories with other members of the dog community at events near you!</p>
-
-<div class="grid-container">
-  {% for event in events %}
-  <div>
-    <p>{{event.event_name}}</p>
-   <a href={{event.eventbrite_url}}><img src={{event.event_image}} width=250> </a>
- </div>
-  {% endfor %}
-</div>
-
-<div id="find-dog-events-btn" class="row text-center">
-    <a class="btn btn-info" href="/events-search">Explore experiences nearby!</a>
-</div>
-
+  });
+  </script>
 {% endblock %}
+
+
+

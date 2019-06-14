@@ -6,43 +6,53 @@
 </head>
 
 <style>
-	.container {
-		background-color: #C8C8C8
-	}
 	li {
         list-style-type: none;
       }
+    #profile-container {
+    	padding-left: 150px;
+    	padding-right:150px;
+    	padding-bottom: 25px;
+    	background-color:linen;
+    }
     .profile-card {
     	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 		transition: 0.3s;
     	border-radius: 25px;
     	width: 300px;
     	text-align: center;
-
+    	background-color:brown;
+    	padding-top: 25px;
+    }
+    .profile-headers {
+    	width: 300px;
+    	font-size: 30px;
+    	font-family: 'Shadows Into Light';
     }
 	.profile-top {
 		width: 300px;
+		color: goldenrod;
 	}
 	.profile-basic-info {
 		width: 300px;
 		margin-left: 15px;
 		text-align: left;
 		text-align: left;
+		color: white;
 	}
 	.basic-info {
 		margin-left: 15px;
 	}
 
 	.events-container {
-	  	grid-template-columns: 250px;
+	  	grid-template-columns: 300px;
       	grid-auto-rows: 200px;
       	grid-gap: 50px;
 		border-radius: 25px;
 		padding: 10px;
 		text-align: center;
-		max-height: 800px;
+		max-height: 500px;
 		overflow: auto;
-
 	}
 
 	.card {
@@ -59,15 +69,18 @@
 </style>
 
 </style>
-<div class="container-fluid">
+<div class="container-fluid" id = "profile-container">
 	<div class="row">
-		<div class="col-sm-4">
+		<div class="col-sm-4" style="text-align:center">
+			<h1 class="profile-headers"> Profile </h1>
 			<div class="profile-card">
 				<!-- Profile Picture and Random Profile Picture Generator -->
 				<div class="profile-top">
-					<h1> Profile </h1>
-					<img style="border-radius: 25px" id="avatar" src={{user.url}} width = "250"> </img>
-					<p><p style="font-weight:bold">Randomly generate a new avator!</p> <input id="get-avatar-btn" type="submit" value="generate"></p>       
+					<img style="max-height: 300px; max-width: 300px" id="avatar" src={{user.url}}> </img>
+					<p>
+						<p style="font-weight:bold">Randomly generate a new avator!</p> 
+						<button style="border-radius:5px" id="get-avatar-btn" type="submit"> Generate</button>
+					</p>       
 				</div>
 				<!-- Profile Picture and Random Profile Picture Generator -->
 				<div class="profile-basic-info">
@@ -77,30 +90,94 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-4" style="text-align:center">
+			<h1 class="profile-headers"> Saved Places </h1>
 			<div class="events-container">
-				<h1> Saved Places </h1>
 					{% for place in places %}
-					<div class="card">
-						<p><b>{{place.place_name}}<b></p>
-						<img style="border-radius: 25px" id="avatar" src={{place.place_imURL}} width="250"></img>
+					<div class="card" style="background-color:moccasin">
+						<p>{{place.place_name}}</p>
+						<img style="border-radius: 25px; max-width: 300px; max-height: 150px" id="avatar" src={{place.place_imURL}}></img>
 						<p> {{place.place_address}}</p>
+						<p><a href={{place.place_website}}>{{place.place_website}}</a></p>
+						{% if place.place_hours %}
+							{% for items in place.place_hours %}
+								<li>{{items}}</li>
+							{% endfor %}
+						{% endif %}
 					</div>
 					{% endfor %}
-			</div>	
+			</div>
+			<div style="width:300px">
+				<button style="margin-top: 25px" type="submit" class="btn btn-primary" data-toggle="modal" data-target=#emailsheltermodal>
+				<span class="glyphicon glyphicon-envelope"></span> Share Favorite Shelters</button>
+			</div>
+
+              <!-- Modal -->
+		    <div class="modal fade" id=emailsheltermodal role="dialog">
+              <div class="modal-dialog" id=modaldialog>
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header" style="background-color:#428bca">
+                      Share with a friend 
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="share" style="color:black">
+                      <form action="/share-favorite-shelters" method="POST">
+                      <p style="color:black; background-color:white"></p>
+                      <input type="text" name="user_email" class="form" placeholder="Your email">
+                      <input type="text" name="recipient_email" class="form" placeholder="Recipient email">
+                      <div style="padding:15px"> <button type="submit" class="btn btn-primary">Share</button> </div>
+                      </form>
+                    </div>  
+                </div>
+
+              </div>
+            </div>
+
+
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-4" style="text-align:center">
+			<h1 class="profile-headers"> Saved Events </h1>
 			<div class="events-container">
-				<h1> Saved Events </h1>
 				{% for event in events %}
-				<div class="card">
-					<p><b>{{event.event_name}}<b></p>
-					<div> <img style="border-radius: 25px" id="avatar" src={{event.event_imURL}} width = "250"> </img></div>
+				<div class="card" style="background-color:moccasin">
+					<p>{{event.event_name}}</p>
+					<div> <img style="border-radius: 25px; max-width: 300px; max-height: 200px" id="avatar" src={{event.event_imURL}}> </img></div>
 					<p>{{event.event_address}}</p>
 					<p>{{event.event_date}}</p>
+					<p><a href={{event.event_website}}>Click here to RSVP on Eventbrite.</a></p>
 				</div>
 				{% endfor %}
-			</div>	
+			</div>
+			<div style="width:300px">
+				<button style="margin-top: 25px" type="submit" class="btn btn-primary" data-toggle="modal" data-target=#emaileventsmodal>
+					<span class="glyphicon glyphicon-envelope"></span> Share Favorite Events</button>
+			</div>
+
+			  <!-- Modal -->
+		    <div class="modal fade" id=emaileventsmodal role="dialog">
+              <div class="modal-dialog" id=modaldialog>
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header" style="background-color:#428bca">
+                      Share with a friend 
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="share" style="color:black">
+                      <form action="/share-favorite-events" method="POST">
+                      <p style="color:black; background-color:white"></p>
+                      <input type="text" name="user_email" class="form" placeholder="Your email">
+                      <input type="text" name="recipient_email" class="form" placeholder="Recipient email">
+                      <div style="padding:15px"> <button type="submit" class="btn btn-primary">Share</button> </div>
+                      </form>
+                    </div>  
+                </div>
+
+              </div>
+            </div>
+
 		</div>
 	</div>
 </div>

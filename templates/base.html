@@ -6,20 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC&display=swap" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <style>
-  /*.navbar {
-    background-color: black;
-  }*/
- /* .container-fluid {
-    background-color: #FFEFD5;
-  }*/
   #navbar {
-    background-color: blue;
+    background-color: black
   }
-
-
   .modal-header, h4, .close {
     background-color: #5bc0de;
     color:white !important;
@@ -33,7 +28,7 @@
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-inverse" id=navbar>
+  <nav class="navbar navbar-inverse" id=navbar style="margin-bottom:0">
     <div class="container-fluid">
       <div class="navbar-header"> <a class="navbar-brand" href="#">Press Paws</a></div>
       <ul class="nav navbar-nav">
@@ -67,16 +62,15 @@
                   <form action="/landing-login" method="POST">
                     {% for i in range(2) %}
                     <div class="form-group">
-                      <label for={{login_elements[i]}}><span class="glyphicon glyphicon-user"></span>{{login_titles[i]}}</label>
-                      <input type="text" class="form-control" id={{login_elements[i]}} name={{login_elements[i]}} placeholder="Enter {{login_titles[i]}}">
+                      <label for={{session.login_elements[i]}}>{{session.login_titles[i]}}</label>
+                      <input type="text" class="form-control" id={{session.login_elements[i]}} name={{session.login_elements[i]}} placeholder="Enter {{session.login_titles[i]}}">
                     </div>
                     {% endfor %}
-                        <button type="submit" class="btn btn-info btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+                        <button type="submit" class="btn btn-info btn-block"></span> Login</button>
                     </form>
                   </div>
                   <div class="modal-footer">
                     <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                    <p>Forgot <a href="#">Password?</a></p>
                   </div>
                 </div>
               </div>
@@ -96,8 +90,8 @@
                                 <form action="/landing-registration" method="POST">
                                   {% for i in range(5) %}
                                   <div class="form-group">
-                                    <label for={{registration_elements[i]}}>{{registration_titles[i]}}</label>
-                                    <input type="text" class="form-control" id={{registration_elements[i]}} name={{registration_elements[i]}} placeholder = "Enter {{registration_titles[i]}}">
+                                    <label for={{session.registration_elements[i]}}>{{session.registration_titles[i]}}</label>
+                                    <input type="text" class="form-control" id={{session.registration_elements[i]}} name={{session.registration_elements[i]}} placeholder = "Enter {{session.registration_titles[i]}}">
                                   </div>
                                   {% endfor %}
                                   <button type="submit" class="btn btn-info btn-block"><span class="glyphicon glyphicon-off"></span> Register </button>
@@ -112,15 +106,16 @@
   </ul>
 </div>
 </nav>
+
   {% endif %}
   <script>
-    $(document).ready(function(){
+    $(function(){
       $("#myLoginBtn").click(function() {
         $("#loginModal").modal();
       });
     });
 
-    $(document).ready(function(){
+    $(function(){
       $("#myRegistrationBtn").click(function(){
         $("#registerModal").modal();
       });

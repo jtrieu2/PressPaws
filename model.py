@@ -59,6 +59,8 @@ class Place(db.Model):
     place_name = db.Column(db.String(300))
     place_address = db.Column(db.String(500))
     place_imURL = db.Column(db.String(1000))
+    place_website = db.Column(db.String(1000), nullable=True)
+    place_hours = db.Column(db.String(1000), nullable=True)
 
     user = db.relationship("User", 
                             backref=db.backref("places", 
@@ -82,6 +84,7 @@ class Event(db.Model):
     event_address = db.Column(db.String(500))
     event_date = db.Column(db.String(100))
     event_imURL = db.Column(db.String(1000))
+    event_website = db.Column(db.String(1000))
 
     user = db.relationship("User", 
                         backref=db.backref("events", 

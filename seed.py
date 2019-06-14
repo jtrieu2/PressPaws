@@ -41,7 +41,7 @@ if __name__ == "__main__":
 
     user = User(user_id=1,fname='Jenny',lname='Trieu',email='jennytrieu10@gmail.com', password="evil", url = default_url)
     place = Place(user_id=1, place_name = 'WinterWonderland', place_address = '100 Main St, San Francisco, CA 94110', place_imURL = default_url)
-    event = Event(user_id=1, event_name = 'Doggy Dayzz', eventbrite_id = '1234asdf', event_address = '200 Main St, San Francisco, CA 94110', event_date = '05-01-2019', event_imURL = default_url)
+    event = Event(user_id=1, event_name = 'Doggy Dayzz', eventbrite_id = '1234asdf', event_address = '200 Main St, San Francisco, CA 94110', event_date = 'January 1, 2019', event_imURL = default_url)
     db.session.add(user)
     db.session.add(place)
     db.session.add(event)

@@ -1,9 +1,7 @@
-import requests 
+import requests
 import os
 import json
-
-
-
+from datetime import datetime
 
 def get_eventbrite_details(city, num_events):
 	EVENTBRITE_TOKEN = os.environ.get('EVENTBRITE_TOKEN')
@@ -57,13 +55,14 @@ def get_eventbrite_details(city, num_events):
 				event['event_name'] = item['name']['text']
 				event['event_address'] = item['venue']['address']['localized_multi_line_address_display']
 				event['eventbrite_url'] = item['url']
-				event['event_date'] = (item['start']['local']).split('T')[0]
+				event['event_date'] = format_date((item['start']['local']).split('T')[0])
 				event['event_image'] = item['logo']['original']['url']
 				event['event_description'] = item['description']['html']
 				filtered_event_list.append(event)
 				filtered_event_id_list.append(item['id'])
 
 		return [filtered_event_list, filtered_event_id_list]
+
 
 def get_event_details(event_id):
 	EVENTBRITE_TOKEN = os.environ.get('EVENTBRITE_TOKEN')
@@ -78,12 +77,17 @@ def get_event_details(event_id):
 		event_info['event_name'] = data['name']['text']
 		event_info['event_address'] = data['venue']['address']['localized_address_display']
 		event_info['eventbrite_url'] = data['url']
-		event_info['event_date'] = (data['start']['local']).split('T')[0]
+		event_info['event_date'] = format_date((data['start']['local']).split('T')[0])
 		event_info['event_image'] = data['logo']['original']['url']
 		event_info['event_description'] = data['description']['html']
 
 	return event_info
 
+
+def format_date(unformatted_date):
+	formatted_date = datetime.strptime(unformatted_date, '%Y-%m-%d')
+	formatted_date = f"{formatted_date.strftime('%b')} {formatted_date.strftime('%d')}, {formatted_date.strftime('%Y')}"
+	return formatted_date
 
 
 

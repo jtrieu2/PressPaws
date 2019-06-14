@@ -1,41 +1,33 @@
-{% extends 'base.html' %}
-{% block content %}
+
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
-
-
 <style>
+.events-header {
+  padding-top: 50px;
+  padding-bottom: 5px;
+  font-size: 30px;
+  font-family:'Shadows Into Light';
+  background-color: brown;
+
+}
+
+#events-container {
+  background-color:moccasin;
+  text-align: center;
+}
 .cards-container {
-  margin-left: auto;
-  margin-right: auto;
   display: grid;
   grid-template-columns: auto auto auto auto;
-  grid-gap: 10px;
-  padding: 100px;
+  grid-gap: 40px;
   text-align: center;
+  padding-bottom: 100px;
 }
-
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  width: 300px;
+  width: 250px;
   height: auto;
-  background-color:#555;
-  color: white;
   text-align: center;
 }
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-/*.container-fluid {
-  padding: 2px 16px;
-  margin-left:50px;
-  margin-right:auto;
-}*/
 
 .like-btn {
   background-color:salmon;
@@ -44,70 +36,170 @@
   border-radius: 5px;
   text-align: center;
 }
+.like-btn:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  opacity: 0.75;
+}
+ .centeredtext {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-  font-size: 16px;
-  padding: 12px 24px;
-  border: none;
+.hovertext {
+  position: relative;
+  color: white;
+}
+.event-image {
+  width: auto;
+  height: auto;
+  max-height:250px;
+  max-width: 250px;
+}
+.event-image:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.like-btn {
+  width: 100%;
+  font-weight:bold;
+}
+.event-names {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background-color: brown;
+  font-size: 15px;
+  font-weight:bold;
+  color: white;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+.event-details {
+  color: brown;
+  font-weight: bold;
+}
+.input-group {
+  margin-top:25px;
+  margin-bottom: 75px;
+  left: 23.5%;
+}
 </style>
 </head>
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid" id="events-container">
 
-
-<div class="container-fluid">
-    <h2 style="padding:50px">Find dog-friendly events near you and meet others in the community!</h2>
+  <div class="events-header">
+    <h1>Find dog-friendly events near you and meet others in the community!</h1>
     <!-- Search form -->
     <form action="/events-search" method="POST">
-      <div class="input-group" style="padding:50px">
+      <div class="input-group">
           <input class="form-control" type="text" name="city" placeholder="San Francisco" aria-label="Search" style="width:500px">
-          <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span>Search</button>
+          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>Search</button>
       </div>
     </form>
-
-    <br></br>
+  </div>
 
     <div class="cards-container">
         {% for event in events_list %}
         <div class="card">
-            <a href={{event.eventbrite_url}}><img src={{event.event_image}} alt="Avatar" style="width:100%"></a>
-            <button id={{event.event_id}} class="like-btn" style="width:100%"><i class="fa fa-heart"></i> LIKE </button>
-            <h4><b>{{event.event_name}}</b></h4> 
-            {% for line in event.event_address %}
-              <p>{{line}}</p> 
-            {% endfor %}
-              <p>{{event.event_date}}</p>
-        </div>
+          <a href={{event.eventbrite_url}} class="hovertext" id=div{{event.event_id}} style="position: relative; color: brown; font-weight: bold">
+            <img class="event-image" id=img{{event.event_id}} src={{event.event_image}} alt="Avatar">
+            <p class="centeredtext" id=text{{event.event_id}}></p>
+          </a>
+            <button id={{event.event_id}} class="like-btn"><i class="fa fa-heart"></i> LIKE </button>
+            <div class="event-names">{{event.event_name}}</div> 
+                {% for line in event.event_address %}
+                <p class="event-details">{{line}}</p> 
+                {% endfor %}
+                <p class="event-details">{{event.event_date}}</p>
+
+                  <!-- Trigger the modal with a button -->
+                <div style="padding: 15px">
+                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target=#modal{{event.event_id}}>
+                    Share <i class="fas fa-share-square"></i>
+                  </button>
+                </div>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id=modal{{event.event_id}} role="dialog">
+                    <div class="modal-dialog" id=modaldialog{{event.event_id}}>
+                    
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header" style="background-color:#428bca">
+                          Share with a friend 
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="share" style="color:black">
+                          <form action="/share-event" method="POST">
+                          <p style="color:black; background-color:white"></p>
+                          <input type="text" name="user_email" class="form" placeholder="Your email">
+                          <input type="text" name="recipient_email" class="form" placeholder="Recipient email">
+                          <input type="hidden" name="event_id" value="{{event.event_id}}">
+                          <div style="padding:15px"> <button type="submit" class="btn btn-primary">Invite</button> </div>
+                          </form>
+                        </div>  
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
           {% endfor %}
       </div>
 </div>
-
-
-
 <script>    
+
+    let ids = 'undefined';
    $.get("/search.json",function (results){
-    let ids = results.events;
+    ids = results.events;
     let likeButtons =  $('.like-btn');
+    let eventImages = $('.event-image');
+    let hoverTexts = $('.centeredtext');
+    let imageDivs = $('.hovertext');
 
     for (let i = 0; i < likeButtons.length; i++) {
-
       let button = $(`#${likeButtons[i].id}`);
-      if (ids.includes(button.attr('id'))) {
-        button.css("color", "black");
-      }
+      let eventImage = $(`#${eventImages[i].id}`);
+      let hoverText = $(`#${hoverTexts[i].id}`);
+      let imageDiv = $(`#${imageDivs[i].id}`);
 
-      let inputdata;
-      button.click( function() {
-        if (button.css("color") === "rgb(0, 0, 0)") {
-          inputdata = {'event_id': button.attr('id'), 
-                      'database_action': 'remove' };
-          console.log(inputdata);
-          $.post("/grab-data-from-frontend", inputdata, function(){})
-          button.css("color","white");
-        } else {
-          inputdata = {'event_id': button.attr("id"),
-                       'database_action': 'add'};
-          $.post("/grab-data-from-frontend", inputdata, function(){})
-          button.css("color","black");
-        }
+
+      imageDiv.mouseover( function() {
+        eventImage.css("opacity",0.5);
+        hoverText.html('Click for more details about the event and to register on eventbrite');
+        hoverText.css("visibility","visible");
       });
+
+      imageDiv.mouseout( function() {
+        eventImage.css("opacity",1);
+        hoverText.css("visibility","hidden");
+      });
+
+      if (ids) {
+        if (ids.includes(button.attr('id'))) {
+          button.css("color", "black");
+        };
+        let inputdata;
+        button.click( function() {
+          console.log('hi')
+          if (button.css("color") === "rgb(0, 0, 0)") {
+            inputdata = {'event_id': button.attr('id'), 
+                        'database_action': 'remove' };
+            console.log(inputdata);
+            $.post("/grab-data-from-frontend", inputdata, function(){})
+            button.css("color","white");
+          } else {
+            inputdata = {'event_id': button.attr("id"),
+                         'database_action': 'add'};
+            $.post("/grab-data-from-frontend", inputdata, function(){})
+            button.css("color","black");
+          }
+        });
+      }
     }
    })
      
