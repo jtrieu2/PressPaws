@@ -157,14 +157,15 @@
 
   <!-- Grid container of sample nearby dog friendly events -->
   <div class="grid-container" >
-    {% if events %}
+
     {% for event in events %}
+
+
     <div>
       <p style="font-size:20px; font-family: 'Amatic SC', cursive">{{event.event_name}}</p>
      <a href={{event.eventbrite_url}}><img src={{event.event_image}} style="max-width:250px; max-height:200px"> </a>
    </div>
     {% endfor %}
-    {% endif %}
   </div>
 
   <!-- Button enabling search for nearby dog-friendly events -->

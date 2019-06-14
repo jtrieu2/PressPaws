@@ -8,7 +8,7 @@ from model import connect_to_db, db, User, Avatar, Place, Event
 
 from eventbrite import get_eventbrite_details, get_event_details
 
-from sendgrid_helper import send_email, send_batch_shelters_email, send_batch_events_email
+# from sendgrid_helper import send_email, send_batch_shelters_email, send_batch_events_email
 
 import os, json, random, requests
 
@@ -35,14 +35,11 @@ def show_homepage():
     session["registration_elements"] = registration_elements
     session["registration_titles"] = registration_titles
     session["current_page"] = '/'
-        # [events, event_ids] = get_eventbrite_details(city = 'San Francisco', num_events = 8)
-    events = []
-    event_ids = []
 
     if session.get('user_id',0):
     	print(session['user_id'])
 
-
+    [events, event_ids] = get_eventbrite_details(city = 'San Francisco', num_events = 8)
     return render_template("landing.html", events = events, event_ids = event_ids)
 
 @app.route('/landing-login', methods=['GET','POST'])
@@ -119,9 +116,9 @@ def logout():
 @app.route('/search')
 def search():
 	"""Dog Adoption Shelters Page."""
-
+	google_api_key = os.environ.get('GOOGLE_API_KEY')
 	session['current_page'] = '/search'
-	return render_template("search.html")
+	return render_template("search.html", google_api_key = google_api_key)
 
 @app.route('/search.json')
 def get_favorites():
