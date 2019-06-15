@@ -8,7 +8,7 @@ from model import connect_to_db, db, User, Avatar, Place, Event
 
 from eventbrite import get_eventbrite_details, get_event_details
 
-# from sendgrid_helper import send_email, send_batch_shelters_email, send_batch_events_email
+from sendgrid_helper import send_email#, send_batch_shelters_email, send_batch_events_email
 
 import os, json, random, requests
 
@@ -267,54 +267,14 @@ def share_events():
 	event to another user via email."""
 
 	# Get form variables: from and to email addresses and event information
-	user_email = request.form['user_email']
 	recipient_email = request.form['recipient_email']
 	event_id = request.form['event_id']
 	event_info = get_event_details(event_id)
 
 	# Send email function imported from sendgrid_helper.py
-	send_email(user_email, recipient_email, event_info)
+	send_email(recipient_email, event_info)
 
 	return redirect('/events-search')
-
-@app.route('/share-favorite-shelters', methods = ['POST'])
-def share_batch_shelters():
-	"""Send email method from profile.
-	Allows users to share all bookmarked places in one email."""
-
-	# Get form variables: from and to email addresses and event information.
-	user_email = request.form['user_email']
-	recipient_email = request.form['recipient_email']
-
-	# Query data base for currently logged in user and obtain user's saved shelters list
-	user = User.query.get(session['user_id'])
-	places = user.places
-
-	for place in places:
-		if place.place_hours:
-			place.place_hours = json.loads(place.place_hours)
-
-	# Send email function imported from sendgrid_helper.py
-	send_batch_shelters_email(user_email, recipient_email, places)
-
-	return redirect('/profile')
-
-@app.route('/share-favorite-events', methods = ['GET','POST'])
-def share_batch_events():
-	"""Send email method from profile.
-	Allows users to share all bookmarked events in one email."""
-
-	# Get form variables: from and to email addresses and event information.
-	user_email = request.form['user_email']
-	recipient_email = request.form['recipient_email']
-
-	# Query data base for currently logged in user and obtain user's saved shelters list
-	user = User.query.get(session['user_id'])
-	events = user.events
-
-	send_batch_events_email(user_email, recipient_email, events)
-
-	return redirect('/profile')
 
 
 if __name__ == "__main__":

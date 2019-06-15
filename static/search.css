@@ -9,14 +9,15 @@ html, body {
   text-align:center;
   font-weight: bold;
   font-family:'Shadows Into Light';
-  font-size: 30px;
+  font-size: 60px;
+  color: white;
 }
 #map {
   height: 75%;
   width: 35%;
   position: absolute;
   left: 55%;
-  top: 12%;
+  top: 20%;
 }
 html, body {
   padding: 0;
@@ -47,7 +48,7 @@ grid-template-columns: 175px 175px;
 grid-auto-rows: 300px;
 grid-gap: 75px;
 overflow: auto;
-height: 800px;
+height: 500px;
 background-color: moccasin;
 border-radius: 25px;
 }

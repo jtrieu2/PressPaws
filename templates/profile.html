@@ -51,36 +51,9 @@
 					</div>
 					{% endfor %}
 			</div>
-			<div class="email-btn">
-				<button type="submit" class="btn btn-primary" data-toggle="modal" data-target=#emailsheltermodal>
-				<span class="glyphicon glyphicon-envelope"></span> Share Favorite Shelters</button>
-			</div>
-
-              <!-- Modal -->
-		    <div class="modal fade" id=emailsheltermodal role="dialog">
-              <div class="modal-dialog" id=modaldialog>
-                
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header" style="background-color:#428bca">
-                      Share with a friend 
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="share" style="color:black">
-                      <form action="/share-favorite-shelters" method="POST">
-                      <p class="email-modal"></p>
-                      <input type="text" name="user_email" class="form" placeholder="Your email">
-                      <input type="text" name="recipient_email" class="form" placeholder="Recipient email">
-                      <div style="padding:15px"> <button type="submit" class="btn btn-primary">Share</button> </div>
-                      </form>
-                    </div>  
-                </div>
-
-              </div>
-            </div>
-
 
 		</div>
+		<!-- Bookmarked Events Column -->
 		<div class="col-sm-4">
 			<h1 class="profile-headers"> Saved Events </h1>
 			<div class="events-container">
@@ -94,34 +67,6 @@
 				</div>
 				{% endfor %}
 			</div>
-			<div class="email-btn">
-				<button type="submit" class="btn btn-primary" data-toggle="modal" data-target=#emaileventsmodal>
-					<span class="glyphicon glyphicon-envelope"></span> Share Favorite Events</button>
-			</div>
-
-			  <!-- Modal -->
-		    <div class="modal fade" id=emaileventsmodal role="dialog">
-              <div class="modal-dialog" id=modaldialog>
-                
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header" style="background-color:#428bca">
-                      Share with a friend 
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="share" style="color:black">
-                      <form action="/share-favorite-events" method="POST">
-                      <p style="color:black; background-color:white"></p>
-                      <input type="text" name="user_email" class="form" placeholder="Your email">
-                      <input type="text" name="recipient_email" class="form" placeholder="Recipient email">
-                      <div style="padding:15px"> <button type="submit" class="btn btn-primary">Share</button> </div>
-                      </form>
-                    </div>  
-                </div>
-
-              </div>
-            </div>
-
 		</div>
 	</div>
 </div>

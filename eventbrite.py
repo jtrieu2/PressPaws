@@ -29,7 +29,6 @@ def get_eventbrite_details(city, num_events):
 		batched_search = []
 		for event in events:
 			event_id = event['id']
-			print(event_id)
 			search_key = {"method": "GET", "relative_url": f"events/{event_id}/?expand=venue"}
 			batched_search.append(search_key)
 

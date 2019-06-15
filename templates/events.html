@@ -1,92 +1,7 @@
 
 <head>
+    <link rel="stylesheet" type="text/css" href="/static/events.css">
 </head>
-<style>
-.events-header {
-  padding-top: 50px;
-  padding-bottom: 5px;
-  font-size: 30px;
-  font-family:'Shadows Into Light';
-  background-color: brown;
-  margin-bottom: 100px;
-}
-#events-container {
-  background-color:moccasin;
-  text-align: center;
-}
-.cards-container {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  grid-gap: 40px;
-  text-align: center;
-  padding-bottom: 100px;
-  margin-left:125px;
-  margin-right:100px;
-}
-.card {
-  transition: 0.3s;
-  width: 250px;
-  height: auto;
-  text-align: center;
-}
-
-.like-btn {
-  background-color:salmon;
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
-  text-align: center;
-}
-.like-btn:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  opacity: 0.75;
-}
- .centeredtext {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.hovertext {
-  position: relative;
-  color: white;
-}
-.event-image {
-  width: auto;
-  height: auto;
-  max-height:250px;
-  max-width: 250px;
-}
-.event-image:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-.like-btn {
-  width: 100%;
-  font-weight:bold;
-}
-.event-names {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  background-color: brown;
-  font-size: 15px;
-  font-weight:bold;
-  color: white;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin-bottom: 20px;
-}
-.event-details {
-  color: brown;
-  font-weight: bold;
-}
-.input-group {
-  margin-top:25px;
-  margin-bottom: 75px;
-  left: 23.5%;
-}
-</style>
 </head>
 {% extends 'base.html' %}
 {% block content %}
@@ -142,7 +57,6 @@
                         <div class="share" style="color:black">
                           <form action="/share-event" method="POST">
                           <p style="color:black; background-color:white"></p>
-                          <input type="text" name="user_email" class="form" placeholder="Your email">
                           <input type="text" name="recipient_email" class="form" placeholder="Recipient email">
                           <input type="hidden" name="event_id" value="{{event.event_id}}">
                           <div style="padding:15px"> <button type="submit" class="btn btn-primary">Invite</button> </div>
