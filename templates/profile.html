@@ -1,11 +1,99 @@
 {% extends 'base.html' %}
 {% block content %}
-
 <head>
-	<link rel="stylesheet" type="text/css" href="/static/profile.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
+<style>
+	html, body {
+  	width: 100%;
+  	height: 100%;
+  	background-color: linen;
+	}
+	li {
+        list-style-type: none;
+      }
+    #profile-container {
+    	padding-left: 200px;
+    	padding-right:200px;
+    	padding-bottom: 25px;
+    	background-color:linen;
+    	text-align: center;
+    }
+    .profile-card {
+    	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+		transition: 0.3s;
+    	border-radius: 25px;
+    	width: 300px;
+    	text-align: center;
+    	background-color:brown;
+    	padding-top: 25px;
+    }
+    .profile-headers {
+    	width: 300px;
+    	font-size: 30px;
+    	font-family: 'Shadows Into Light';
+    	text-align: center;
+    }
+	.profile-top {
+		width: 300px;
+		color: goldenrod;
+	}
+	.profile-basic-info {
+		width: 300px;
+		margin-left: 15px;
+		text-align: left;
+		text-align: left;
+		color: white;
+	}
+	.basic-info {
+		margin-left: 15px;
+	}
 
+	.events-container {
+	  	grid-template-columns: 300px;
+      	grid-auto-rows: 200px;
+      	grid-gap: 50px;
+		border-radius: 25px;
+		padding: 10px;
+		text-align: center;
+		max-height: 500px;
+		width: 400px;
+		overflow: auto;
+	}
+	.card {
+		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+		transition: 0.3s;
+		width: 275px;
+		border-radius: 25px;
+		background-color: moccasin;
+		margin: 25px;
+	}
+	.card:hover {
+  		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	}
+	.card-names {
+		font-weight: bold;
+		padding-top: 10px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.email-modal {
+		color:black;
+		background-color:white;
+	}
+	.bookmark {
+		border-radius: 25px;
+		max-width: 300px;
+		max-height: 150px;
+	}
+	.email-btn {
+		width: 350px;
+		margin-top: 25px;
+	}
+
+</style>
+
+</style>
 <div class="container-fluid" id = "profile-container">
 	<!-- Profile Column -->
 	<div class="row">
@@ -51,9 +139,36 @@
 					</div>
 					{% endfor %}
 			</div>
+			<div class="email-btn">
+				<button type="submit" class="btn btn-primary" data-toggle="modal" data-target=#emailsheltermodal>
+				<span class="glyphicon glyphicon-envelope"></span> Share Favorite Shelters</button>
+			</div>
+
+              <!-- Modal -->
+		    <div class="modal fade" id=emailsheltermodal role="dialog">
+              <div class="modal-dialog" id=modaldialog>
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header" style="background-color:#428bca">
+                      Share with a friend 
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="share" style="color:black">
+                      <form action="/profile" method="POST">
+                      <p class="email-modal"></p>
+                      <input type="text" name="user_email" class="form" placeholder="Your email">
+                      <input type="text" name="recipient_email" class="form" placeholder="Recipient email">
+                      <div style="padding:15px"> <button type="submit" class="btn btn-primary">Share</button> </div>
+                      </form>
+                    </div>  
+                </div>
+
+              </div>
+            </div>
+
 
 		</div>
-		<!-- Bookmarked Events Column -->
 		<div class="col-sm-4">
 			<h1 class="profile-headers"> Saved Events </h1>
 			<div class="events-container">
@@ -67,6 +182,34 @@
 				</div>
 				{% endfor %}
 			</div>
+			<div class="email-btn">
+				<button type="submit" class="btn btn-primary" data-toggle="modal" data-target=#emaileventsmodal>
+					<span class="glyphicon glyphicon-envelope"></span> Share Favorite Events</button>
+			</div>
+
+			  <!-- Modal -->
+		    <div class="modal fade" id=emaileventsmodal role="dialog">
+              <div class="modal-dialog" id=modaldialog>
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header" style="background-color:#428bca">
+                      Share with a friend 
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="share" style="color:black">
+                      <form action="/profile" method="POST">
+                      <p style="color:black; background-color:white"></p>
+                      <input type="text" name="user_email" class="form" placeholder="Your email">
+                      <input type="text" name="recipient_email" class="form" placeholder="Recipient email">
+                      <div style="padding:15px"> <button type="submit" class="btn btn-primary">Share</button> </div>
+                      </form>
+                    </div>  
+                </div>
+
+              </div>
+            </div>
+
 		</div>
 	</div>
 </div>
