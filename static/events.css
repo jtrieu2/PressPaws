@@ -13,9 +13,10 @@
 .cards-container {
   display: grid;
   grid-template-columns: auto auto auto auto;
-  grid-gap: 40px;
+  grid-gap: 10px;
   text-align: center;
   padding-bottom: 100px;
+  justify-content: center;
 }
 .card {
   transition: 0.3s;
