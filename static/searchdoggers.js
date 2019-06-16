@@ -51,6 +51,7 @@ function callback(results, status) {
         let infowindow = new google.maps.InfoWindow();
         let bounds = new google.maps.LatLngBounds();
 
+
         let newmarker = [];
         const redmarker = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
         const bluemarker = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
@@ -69,6 +70,8 @@ function callback(results, status) {
                 icon: redmarker,
                 id: i
             });
+            bounds.extend(place.geometry.location);
+
 
             let request = {
               placeId: place.place_id,
@@ -204,9 +207,6 @@ function callback(results, status) {
                  place_icon[i][0].addEventListener("mouseout", function() {
                   newmarker[place.name].setIcon(redmarker);
                 });
-
-
-                bounds.extend(place.geometry.location);
                   }
                 });
 
