@@ -90,29 +90,29 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a style="font-size: 5px" class="link" href="/">Home</a></li>
-        <li><a style="font-size: 5px" class="link" href="/search">Adoption Shelters</a></li>
-        <li><a style="font-size: 5px" class="link" href="/events-search" width=auto>Community Events</a></li>
+        <li><a style="font-size: 0.2em" class="link" href="/">Home</a></li>
+        <li><a style="font-size: 0.2em" class="link" href="/search">Adoption Shelters</a></li>
+        <li><a style="font-size: 0.2em" class="link" href="/events-search" width=auto>Community Events</a></li>
       </ul>
     {% if session.get('user_id',0) != 0 %}
       <ul class="nav navbar-nav navbar-right">   
           <li id="nav-right-elements" style="margin-left: 20px">
-            <a style="font-size: 5px" style="color:#5bc0de; margin-right: 10px"> Welcome {{session['fname']}}!</a>
+            <a style="font-size: 10px" style="color:#5bc0de; margin-right: 10px"> Welcome {{session['fname']}}!</a>
           </li>
           {% if session.current_page == '/profile' %}
           <li id="nav-right-elements" class="active">
-            <a style="font-size: 5px" href="\profile" id="myProfileBtn"><span class="glyphicon glyphicon-user"></span>Profile</a>
+            <a style="font-size: 10px" href="\profile" id="myProfileBtn"><span class="glyphicon glyphicon-user"></span>Profile</a>
           <li>
           {% else %}
           <li id="nav-right-elements">
-            <a style="font-size: 5px" href="\profile" id="myProfileBtn"><span class="glyphicon glyphicon-user"></span>Profile</a>
+            <a style="font-size: 10px" href="\profile" id="myProfileBtn"><span class="glyphicon glyphicon-user"></span>Profile</a>
           </li>
           {% endif %} 
           <li id="nav-right-elements">
-            <a style="font-size: 5px" href="\logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a>
+            <a style="font-size: 10px" href="\logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a>
           </li>
           <li id="nav-right-elements">
-            <a style="font-size: 5px" id="demo-btn" href='/'><i class="fas fa-user-circle"></i>Demo</a>
+            <a style="font-size: 10px" id="demo-btn" href='/'><i class="fas fa-user-circle"></i>Demo</a>
           </li>
       </ul>
     </div>
