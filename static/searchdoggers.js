@@ -82,32 +82,32 @@ function callback(results, status) {
             service.getDetails(request, function(place, status) {
               if (status === google.maps.places.PlacesServiceStatus.OK) {
                 let ele = $("<li>");
-                ele.css({"textAlign": "center", "width": 175});
+                ele.css({"textAlign": "center", "width": 100});
 
                 let store_title = [];
                 store_title[i] = $("<div>", {text: place.name, class: "storename"});
-                store_title[i].css({"fontSize": "10px", "fontWeight": 700, "width":175});
+                store_title[i].css({"fontSize": "8px", "fontWeight": 700, "width":125);
                 ele.append(store_title[i][0]);
 
                 let photoURL; 
                 if (place.photos != null) {
-                    photoURL = place.photos[0].getUrl({'width':125,'height':125});
+                    photoURL = place.photos[0].getUrl({'width':75,'height':75});
                 } else {
                     photoURL = "https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=jamie-street-804226-unsplash.jpg";
                 }
 
                 let place_icon = [];
                 place_icon[i] = $("<img>", {src: photoURL, class: "dogstoreimg", position: place.geometry.location});
-                place_icon[i].css({"borderRadius": "25px", "width": 125, "height": 125, "maxWidth": "100%", "maxeight": "100%"});
+                place_icon[i].css({"borderRadius": "25px", "width": 75, "height": 75, "maxWidth": "100%", "maxeight": "100%"});
                 ele.append(place_icon[i][0]);
 
                 address[i] = $("<div>", {text: place.formatted_address});
-                address[i].css({"fontSize": "10px", "width": 175});
+                address[i].css({"fontSize": "8px", "width": 125});
                 ele.append(address[i][0]);
 
                 let button = [];
                 button[i] = $("<button>", {text: "Bookmark", id: "bookmark"});
-                button[i].css({"backgroundColor": "salmon", "fontSize": "10px", "borderRadius": "25px"})
+                button[i].css({"backgroundColor": "salmon", "fontSize": "8px", "borderRadius": "25px"})
                 ele.append(button[i][0]);
 
 
@@ -136,7 +136,7 @@ function callback(results, status) {
                 } else {
                   web_url[i] = $("<a>", {text: 'No website found.' });
                 }
-                  web_url[i].css({"fontSize": "10px", "width": 175});
+                  web_url[i].css({"fontSize": "8px", "width": 125});
                 link.append(web_url[i][0]);
                 ele.append(link);
 
