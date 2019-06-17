@@ -36,8 +36,7 @@
   margin-bottom: 35px;
   background-color: moccasin;
   text-align: center;
-  padding-left: 100px;
-  padding-right: 100px;
+  justify-content: center;
 }
 
 
