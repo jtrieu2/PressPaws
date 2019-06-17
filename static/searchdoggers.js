@@ -86,7 +86,7 @@ function callback(results, status) {
 
                 let store_title = [];
                 store_title[i] = $("<div>", {text: place.name, class: "storename"});
-                store_title[i].css({"fontSize": "8px", "fontWeight": 700, "width":125);
+                store_title[i].css({"fontSize": "8px", "fontWeight": 700, "width":125});
                 ele.append(store_title[i][0]);
 
                 let photoURL; 
