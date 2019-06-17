@@ -12,9 +12,9 @@
       <i style="color:green"class="fas fa-leaf"></i>
     </h1>
     <!-- Search form -->
-    <form action="/events-search" method="POST" class="eventsearch" style="margin:auto;max-width:300px">
+    <form action="/events-search" method="POST" class="eventsearch" style="font-size: 10px; margin:auto; max-width: 250px">
           <input type="text" name="city" placeholder="San Francisco.." aria-label="Search" class="form-control">
-          <button type="submit"><i class="fa fa-search"></i>Search</button>
+          <button type="submit"><i class="fa fa-search"></i></button>
     </form>
   </div>
     <div class="cards-container">
@@ -25,7 +25,7 @@
           <a href={{event.eventbrite_url}} class="hovertext" id=div{{event.event_id}} style="position: relative; color: brown; font-weight: bold">
             <img class="event-image" id=img{{event.event_id}} src={{event.event_image}} alt="Avatar"
             style="width:150px; height: auto; max-width: 100%">
-            <p style="font-size: 1vmin; color: brown" class="centeredtext" id=text{{event.event_id}}></p>
+            <p style="font-size: 8px; color: brown" class="centeredtext" id=text{{event.event_id}}></p>
           </a>
           </br>
           <button style="margin-top: 5px; width:30px; height: auto; max-width: 100%; margin-bottom: 15px" id={{event.event_id}} class="like-btn">
