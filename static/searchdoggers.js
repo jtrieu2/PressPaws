@@ -98,7 +98,7 @@ function callback(results, status) {
 
                 let place_icon = [];
                 place_icon[i] = $("<img>", {src: photoURL, class: "dogstoreimg", position: place.geometry.location});
-                place_icon[i].css({"borderRadius": "25px", "width": 175, "height": 175});
+                place_icon[i].css({"borderRadius": "25px", "width": 175, "height": 175, "maxWidth": "100%", "maxeight": "100%"});
                 ele.append(place_icon[i][0]);
 
                 address[i] = $("<div>", {text: place.formatted_address});

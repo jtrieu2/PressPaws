@@ -1,20 +1,46 @@
 {% extends 'base.html' %}
 {% block content %}
+
+
 <head>
   <link rel="stylesheet" type="text/css" href="/static/search.css">
 </head>
+<style>
+.PetShopsContainer {
+margin-top: 25px;
+margin-bottom: 25px;
+padding-top: 25px;
+padding-bottom: 25px;
+display: grid;
+grid-template-columns: auto auto;
+grid-auto-rows: auto;
+/*grid-gap: 300px;*/
+overflow: auto;
+height: 500px;
+background-color: moccasin;
+border-radius: 25px;
+/*justify-content: center;*/
+/*max-height: 100%;*/
+/*max-width: 100%;*/
+text-align: center;
+}
+</style>
   <body>
     <div class="container-fluid" style="background-color:linen">
-      <div class="row">
-        <div class="col-sm-5" style="background-color:brown">
+      <div class="row" style="justify-content: center; text-align: center">
+        <div class="col-sm-5" style="background-color:brown; text-align: center">
           <h1 class="adoption-header"> Adoption Shelters</h1>
-          <ul id="doggy-list" class="PetShopsContainer">  </ul>  
+          <p id="floating-panel" 
+          style="width: 300px; max-width: 100%; margin-left: auto; margin-right: auto">
+            <input id="address" type="textbox" value="New York">
+            <input id="submit" type="button" value="Search dogs!" style="width:100px; border-radius: 5px; background-color: #428bca">
+          </p>
+          <p style="margin-top: 50px"> 
+            <ul id="doggy-list" class="PetShopsContainer" style="margin-left:0; padding-left: 0; margin-right: auto; justify-content: space-around">
+            </ul>
+          </p>
         </div>
-        <div id="map"></div>
-        <div id="floating-panel">
-          <input id="address" type="textbox" value="New York">
-          <input id="submit" type="button" value="Search dogs!" style="width:100px">
-        </div>
+        <div class="col-sm-7" id="map"></div> 
       </div>
   </div>
 

@@ -13,11 +13,10 @@ html, body {
   color: white;
 }
 #map {
-  height: 75%;
-  width: 35%;
-  position: absolute;
-  left: 55%;
-  top: 20%;
+  height: 500px;
+  width: 58%;
+  /*max-height:100%;*/
+  /*max-width: 100%;*/
 }
 html, body {
   padding: 0;
@@ -26,32 +25,14 @@ html, body {
   text-align:center;
   }
 #floating-panel {
-  position: absolute;
-  top: 30%;
-  left: 65%;
   z-index: 5;
-  background-color: #fff;
+  background-color: moccasin;
   padding: 5px;
   border: 1px solid #999;
   text-align: center;
   font-family: 'Roboto','sans-serif';
   line-height: 30px;
-  padding-left: 10px;
 }
-.PetShopsContainer {
-margin-top: 25px;
-margin-bottom: 25px;
-padding-top: 25px;
-padding-bottom: 25px;
-display: grid;
-grid-template-columns: auto auto;
-grid-auto-rows: 300px;
-grid-gap: 75px;
-overflow: auto;
-height: 500px;
-background-color: moccasin;
-border-radius: 25px;
-justify-content: start;
-}
+
 
 }
