@@ -32,16 +32,6 @@
   text-align: center;
   font-size: 30px;
 }
-.logo {
-  position: absolute;
-  text-align: center;
-  color: white;
-  font-size:7.5vmax;
-  font-family:'Shadows Into Light';
-  font-weight:bold;
-  left: 70%;
-  top: 25%;
-}
 #websiteguide {
   margin-bottom: 35px;
   background-color: moccasin;
@@ -56,8 +46,7 @@
   margin-bottom: 20px;
   font-size: 30px;
   font-family: 'Shadows Into Light';
-  padding-left: 100px;
-  padding-right: 100px;
+  justify-content: center;
 }
 #eventsusecase {
   text-align: center;
