@@ -45,20 +45,20 @@ form.eventsearch button {
         {% for event in events_list %}
         <div>
           <p style="background-color: brown; color: white; font-weight: bold; max-width: 250px;
-                    font-size:0.85em; font-family: 'Amatic SC', cursive">{{event.event_name}}</p>
+                    font-size:20px; font-family: 'Amatic SC', cursive">{{event.event_name}}</p>
           <a href={{event.eventbrite_url}} class="hovertext" id=div{{event.event_id}} style="position: relative; color: brown; font-weight: bold">
             <img class="event-image" id=img{{event.event_id}} src={{event.event_image}} alt="Avatar"
             style="width:250px; height: auto; max-width: 100%">
-            <p style="font-size: 8px; color: brown" class="centeredtext" id=text{{event.event_id}}></p>
+            <p style="font-size: 12px; color: brown" class="centeredtext" id=text{{event.event_id}}></p>
           </a>
           </br>
-          <button style="margin-top: 5px; width:30px; height: auto; max-width: 100%; margin-bottom: 15px; text-align: center" id={{event.event_id}} class="like-btn">
-            <i class="fa fa-heart" style="font-size: 15px; margin-right: auto; margin-left: auto; margin-top: auto; margin-bottom: auto"></i>
+          <button style="margin-top: 5px; width:30px; height: auto; max-width: 100%; margin-bottom: 15px; text-align: center" 
+          id={{event.event_id}} class="like-btn"><i class="fa fa-heart" style="font-size: 15px; margin-right: auto; margin-left: auto; margin-top: auto; margin-bottom: auto"></i>
           </button>
             {% for line in event.event_address %}
-            <p style="font-size: 8px; max-width: 250px" class="event-details">{{line}}</p> 
+            <p style="font-size: 12px; max-width: 250px" class="event-details">{{line}}</p> 
             {% endfor %}
-            <p style="font-size: 8px; max-width: 250px; color: black" class="event-details">{{event.event_date}}</p>
+            <p style="font-size: 12px; max-width: 250px; color: black" class="event-details">{{event.event_date}}</p>
           </br>
            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=#modal{{event.event_id}} style="font-size: 8px">
                     Share <i class="fas fa-share-square"></i>
