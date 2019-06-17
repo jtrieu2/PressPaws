@@ -1,7 +1,26 @@
+form.eventsearch input[type=text] {
+  padding: 10px;
+  font-size: 10px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+form.eventsearch button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #428bca;
+  color: white;
+  font-size: 10px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
 .events-header {
   padding-top: 50px;
-  padding-bottom: 5px;
-  font-size: 30px;
+  padding-bottom: 50px;
   font-family:'Shadows Into Light';
   background-color: brown;
   margin-bottom: 100px;
