@@ -5,7 +5,21 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
-
+<style>
+  .resp-container {
+    overflow: hidden;
+    padding-top: 63%;
+    position: relative;
+  }
+  .resp-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border:0;
+  }
+  </style>
 <!-- Top of Landing Page with Background Video and PressPaws Logo Overlaid -->
 <div class="background-video">
   <!-- Background Video -->
@@ -43,12 +57,13 @@
 </div>
 
 <!-- Portion of landing page that describes that adoption shelter feature: Two column layout: left = boostrap carousel, right = video iframe -->
-<div class="row" id="adoptionshelterusecase">
+<div class="row" id="adoptionshelterusecase" style="font-size: 10vmin">
 
-    <h1> Make a difference in a dog's life. A lifetime of adventure awaits. </h1>
+    <h1> Make a difference in a dog's life. A lifetime of adventure awaits hello world. </h1>
 
     <!-- Bootstrap Carousel that describes the benefits of having a dog -->
     <div class="col-sm-6">
+      <div class="resp-container">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
           <!-- Indicators -->
@@ -60,36 +75,40 @@
           </ol>
 
         <!-- Making the background color of the carousel container yellow -->
-        <div class="p-3 mb-2 bg-warning text-dark">
+        <div>
 
           <!-- Wrapper for slides -->
-          <div class="carousel-inner" style="height:315px">
+          <div class="carousel-inner">
             <div class="item active">
-              <img class="center-block" src="https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=jamie-street-804226-unsplash.jpg">
+              <img class="center-block img-fluid" style="height:315px; width: auto"
+               src="https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=jamie-street-804226-unsplash.jpg">
                <div class="carousel-caption">
-                <h1><font color="FFDF00">I bet you didnt know.</font></h1>
-                <p class="carousel-caption-description"> The best therapist has four legs and fur.</p>
+                <h1 style="font-size: 3vmax"><font color="FFDF00">I bet you didnt know.</font></h1>
+                <p class="carousel-caption-description" style="font-size: 1.5vmax"> The best therapist has four legs and fur.</p>
               </div>
             </div>
             <div class="item">
-              <img class="center-block" src="https://images.unsplash.com/photo-1522276498395-f4f68f7f8454?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=eric-ward-610868-unsplash.jpg">
+              <img class="center-block img-fluid" style="height:315px; width: auto"
+               src="https://images.unsplash.com/photo-1522276498395-f4f68f7f8454?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=eric-ward-610868-unsplash.jpg">
               <div class="carousel-caption">
-                <h1><font color="FFDF00">Unconditional Love.</font></h1>
-                <p class="carousel-caption-description">I love you 3000.</p>
+                <h1 style="font-size: 3vmax"><font color="FFDF00">Unconditional Love.</font></h1>
+                <p class="carousel-caption-description" style="font-size: 1.5vmax">I love you 3000.</p>
               </div>
             </div>
             <div class="item">
-              <img class="center-block" src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=ipet-photo-1316903-unsplash.jpg">
+              <img class="center-block img-fluid" style="height:315px; width: auto"
+               src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=ipet-photo-1316903-unsplash.jpg">
                 <div class="carousel-caption">
-                <h1><font color="FFDF00">There's never a dull moment.</font></h1>
-                <p class="carousel-caption-description"> Oh, squirrel!</p>
+                <h1 style="font-size: 3vmax"><font color="FFDF00">There's never a dull moment.</font></h1>
+                <p class="carousel-caption-description" style="font-size: 1.5vmax"> Oh, squirrel!</p>
               </div>
             </div>
             <div class="item">
-              <img class="center-block" src="https://images.unsplash.com/photo-1489440543286-a69330151c0b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=patrick-hendry-221863-unsplash.jpg">
+              <img class="center-block img-fluid" style="height:315px; width: auto"
+               src="https://images.unsplash.com/photo-1489440543286-a69330151c0b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&dl=patrick-hendry-221863-unsplash.jpg">
                 <div class="carousel-caption">
-                <h1><font color="FFDF00">Lifelong Companionship.</font></h1>
-                <p class="carousel-caption-description">I love you, fur-ever!</p>
+                <h1 style="font-size: 3vmax"><font color="FFDF00">Lifelong Companionship.</font></h1>
+                <p class="carousel-caption-description" style="font-size: 1.5vmax">I love you, fur-ever!</p>
               </div>
             </div>
          </div>
@@ -108,41 +127,45 @@
         </div>
 
       </div>
+    </div>
 
       <!-- Pet Adoption video describing the physical and mental health benefits of pet adoption -->
       <div class="col-sm-6">
-        <iframe width="500" height="315" src="https://www.youtube.com/embed/gmkxp6Iq3hU" 
+        <div class="resp-container">
+        <iframe class="resp-iframe" style="width: 600px; height: 315px; max-height:100%" src="https://www.youtube.com/embed/gmkxp6Iq3hU" 
                 frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
         </iframe>
+        </div>
+
       </div>
 
       <!-- Hoverable Dog Icons to illustrate that kinds of dogs available at dog shelters -->
-      <svg width="400" height=200 style="margin-bottom:0px">
+      <svg width="400" height=200 style="margin-bottom:0px; max-width: 100%">
         <svg id="dogpic">
           <defs> <clipPath id="dog1"><circle cy="100" cx="80" r="60" /></clipPath></defs>
-          <image width="40%" height="100%"
+          <image style="max-width:100%" width="40%" height="100%"
            xlink:href="https://images.unsplash.com/photo-1514984879728-be0aff75a6e8?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=jamie-street-499878-unsplash.jpg" clip-path="url(#dog1)" /> 
         </svg>
         <svg id="dogpic">
         <defs> <clipPath id="dog2"><circle cy="100" cx="160" r="60" /></clipPath></defs>
-        <image width="65%" height="100%"
+        <image style="max-width:100%"width="65%" height="100%"
          xlink:href="https://images.unsplash.com/photo-1447684808650-354ae64db5b8?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=jairo-alzate-45522-unsplash.jpg" clip-path="url(#dog2)" /> 
        </svg>
        <svg id="dogpic">
         <defs> <clipPath id="dog3"><circle cy="100" cx="240" r="60" /></clipPath></defs>
-        <image width="125%" height="100%"
+        <image style="max-width:100%"width="125%" height="100%"
          xlink:href="https://images.unsplash.com/photo-1534628526458-a8de087b1123?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=nikolay-tchaouchev-785309-unsplash.jpg" clip-path="url(#dog3)" /> 
        </svg>
        <svg id="dogpic">
         <defs> <clipPath id="dog4"><circle cy="100" cx="320" r="60" /></clipPath></defs>
-        <image width="165%" height="90%"
+        <image style="max-width:100%"width="165%" height="90%"
          xlink:href="https://images.unsplash.com/photo-1531842477197-54acf89bff98?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=angelos-michalopoulos-742054-unsplash.jpg" clip-path="url(#dog4)" /> 
        </svg>
 
       <!-- Button enabling search search for nearby adoption shelters-->
       <div id="find-dog-btn" class="row text-center">
-          <a style="font-size:30px" class="btn btn-info" href="/search">Find an adoption center!</a>
+          <a style="font-size:0.5em" class="btn btn-info" href="/search">Find an adoption center!</a>
       </div>
 </div>
 
