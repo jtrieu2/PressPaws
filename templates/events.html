@@ -1,14 +1,11 @@
-
+{% extends 'base.html' %}
+{% block content %}
 <head>
     <link rel="stylesheet" type="text/css" href="/static/events.css">
 </head>
-</head>
-{% extends 'base.html' %}
-{% block content %}
-<div class="container-fluid" id="events-container">
 
+<div class="container-fluid" id="events-container">
   <div class="events-header">
-    
     <h1 style="color:white">
       <i style="color:green"class="fas fa-leaf"></i>
       Find dog-friendly events near you and meet others in the community!
@@ -16,36 +13,36 @@
     </h1>
     <!-- Search form -->
     <form action="/events-search" method="POST">
-      <div class="input-group">
-          <input class="form-control" type="text" name="city" placeholder="San Francisco" aria-label="Search" style="width:500px">
-          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>Search</button>
-      </div>
+          <input type="text" name="city" placeholder="San Francisco" aria-label="Search" 
+          style="width:200px; max-width:100%; height: 30px; max-height: 100%; ">
+          <button type="submit" class="btn btn-primary">
+            <span class="glyphicon glyphicon-search"></span>Search
+          </button>
     </form>
   </div>
-    <div>
     <div class="cards-container">
         {% for event in events_list %}
-        <div class="card">
+        <div>
+          <p style="background-color: brown; color: white; font-weight: bold; font-size:2em; font-family: 'Amatic SC', cursive">{{event.event_name}}</p>
           <a href={{event.eventbrite_url}} class="hovertext" id=div{{event.event_id}} style="position: relative; color: brown; font-weight: bold">
-            <img class="event-image" id=img{{event.event_id}} src={{event.event_image}} alt="Avatar">
-            <p class="centeredtext" id=text{{event.event_id}}></p>
+            <img class="event-image" id=img{{event.event_id}} src={{event.event_image}} alt="Avatar"
+            style="width:250px; height: auto; max-width: 100%">
+            <p style="font-size: 2vmin; color: brown" class="centeredtext" id=text{{event.event_id}}></p>
           </a>
-            <button id={{event.event_id}} class="like-btn"><i class="fa fa-heart"></i> LIKE </button>
-            <div class="event-names">{{event.event_name}}</div> 
-                {% for line in event.event_address %}
-                <p class="event-details">{{line}}</p> 
-                {% endfor %}
-                <p class="event-details">{{event.event_date}}</p>
-
-                  <!-- Trigger the modal with a button -->
-                <div style="padding: 15px">
-                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target=#modal{{event.event_id}}>
+          </br>
+          <button style="margin-top: 5px; width:50px; height: auto; max-width: 100%" id={{event.event_id}} class="like-btn">
+            <i class="fa fa-heart"></i>
+          </button>
+            {% for line in event.event_address %}
+            <p class="event-details">{{line}}</p> 
+            {% endfor %}
+            <p class="event-details">{{event.event_date}}</p>
+          </br>
+           <button type="button" class="btn btn-primary" data-toggle="modal" data-target=#modal{{event.event_id}}>
                     Share <i class="fas fa-share-square"></i>
-                  </button>
-                </div>
+          </button>
 
-                  <!-- Modal -->
-                  <div class="modal fade" id=modal{{event.event_id}} role="dialog">
+          <div class="modal fade" id=modal{{event.event_id}} role="dialog">
                     <div class="modal-dialog" id=modaldialog{{event.event_id}}>
                     
                       <!-- Modal content-->
@@ -65,12 +62,13 @@
                     </div>
 
                   </div>
-                </div>
+          </div>
 
-              </div>
-          {% endfor %}
-      </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
+
 <script>    
 
     let ids = 'undefined';

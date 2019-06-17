@@ -21,6 +21,7 @@
 .card {
   transition: 0.3s;
   width: 250px;
+  max-width: 100%;
   height: auto;
   text-align: center;
 }
@@ -31,6 +32,9 @@
   cursor: pointer;
   border-radius: 5px;
   text-align: center;
+  width:250px;
+  height: auto;
+  max-width: 100%;
 }
 .like-btn:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -47,15 +51,14 @@
   position: relative;
   color: white;
 }
-.event-image {
-  width: auto;
+/*.event-image {
+  width: 250px;
   height: auto;
-  max-height:250px;
-  max-width: 250px;
+  max-width: 100%;
 }
 .event-image:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
+}*/
 .like-btn {
   width: 100%;
   font-weight:bold;

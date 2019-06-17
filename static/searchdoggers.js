@@ -86,19 +86,19 @@ function callback(results, status) {
 
                 let store_title = [];
                 store_title[i] = $("<div>", {text: place.name, class: "storename"});
-                store_title[i].css({"fontWeight": 700, "width":175});
+                store_title[i].css({"fontSize": "10px", "fontWeight": 700, "width":175});
                 ele.append(store_title[i][0]);
 
                 let photoURL; 
                 if (place.photos != null) {
-                    photoURL = place.photos[0].getUrl({'width':150,'height':150});
+                    photoURL = place.photos[0].getUrl({'width':125,'height':125});
                 } else {
                     photoURL = "https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&dl=jamie-street-804226-unsplash.jpg";
                 }
 
                 let place_icon = [];
                 place_icon[i] = $("<img>", {src: photoURL, class: "dogstoreimg", position: place.geometry.location});
-                place_icon[i].css({"borderRadius": "25px", "width": 150, "height": 150, "maxWidth": "100%", "maxeight": "100%"});
+                place_icon[i].css({"borderRadius": "25px", "width": 125, "height": 125, "maxWidth": "100%", "maxeight": "100%"});
                 ele.append(place_icon[i][0]);
 
                 address[i] = $("<div>", {text: place.formatted_address});
