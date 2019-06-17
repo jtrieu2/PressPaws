@@ -6,15 +6,15 @@
   font-family: 'Sofia', cursive;
   font-size: 48px;
 }
-.pawbutton {
+#pawbutton {
   font-size: 50px;
   color: brown;
 }
-.communitybutton {
+#communitybutton {
   font-size:50px;
   color: goldenrod;
 }
-.connectionbutton {
+#connectionbutton {
   font-size:50px;
   color: steelblue;
 }
@@ -35,7 +35,6 @@
 #websiteguide {
   margin-bottom: 35px;
   background-color: moccasin;
-  text-align: center;
   justify-content: center;
 }
 
