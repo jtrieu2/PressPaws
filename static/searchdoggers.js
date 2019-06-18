@@ -171,7 +171,7 @@ function callback(results, status) {
                       business_hours.css({"textAlign": "center"});
                   for (let i = 0; i < place.opening_hours.weekday_text.length; i++ ) {
                     let hours = $("<li>", {text: place.opening_hours.weekday_text[i]}); 
-                    hours.css({"fontSize": "5px","textAlign": "center"});
+                    hours.css({"fontSize": "3px","textAlign": "center"});
                     business_hours.append(hours);
                   }
                 } else {
