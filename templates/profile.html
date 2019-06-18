@@ -12,6 +12,22 @@
 	li {
         list-style-type: none;
       }
+
+	      /* width */
+	::-webkit-scrollbar {
+	  width: 10px;
+	}
+
+
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+	  background: brown; 
+	}
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+	  background: #555; 
+	}
     #profile-container {
     	margin-left: auto;
     	margin-right: auto;
@@ -23,12 +39,14 @@
     	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 		transition: 0.3s;
     	border-radius: 25px;
-    	width: 80%;
+    	height: 30%;
     	text-align: center;
     	background-color:brown;
     	padding-top: 25px;
     	margin-left: auto;
     	margin-right: auto;
+    	max-height: 550px;
+    	max-width: 400px;
     }
     .profile-headers {
     	width: 100%;
@@ -37,6 +55,7 @@
     	text-align: center;
     	margin-right: auto;
     	margin-left: auto;
+    	text-decoration: underline;
     }
 	.profile-top {
 		width: 80%;
@@ -64,11 +83,18 @@
 		overflow: auto;
 		margin-right: auto;
 		margin-left: auto;
+		background-color: orange;
+		padding-top: 25px;
+		padding-left: 25px;
+		padding-right: 25px;
+		padding-bottom: 25px;
 	}
 	.card {
 		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 		transition: 0.3s;
 		width: 70%;
+		max-width: 400px;
+		width: auto;
 		border-radius: 25px;
 		background-color: moccasin;
 		margin-left: auto;
@@ -124,7 +150,7 @@
 		</div>
 		<!-- Bookmarked Shelters Column -->
 		<div class="col-sm-4" style="text-align:center">
-			<h1 class="profile-headers"> Saved Places </h1>
+			<h1 class="profile-headers"> Saved Places</h1>
 			<div class="events-container">
 					{% for place in places %}
 					<div class="card">
