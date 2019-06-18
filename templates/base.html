@@ -149,9 +149,9 @@
                     <div class="form-group" style="font-size: 10px">
                       <label for={{session.login_elements[i]}}>{{session.login_titles[i]}}</label>
                       {% if i == 1 %}
-                      <input type="password" class="form-control" id={{session.login_elements[i]}} name={{session.login_elements[i]}} placeholder="Enter {{session.login_titles[i]}}">
+                      <input type="password" class="form-control input-sm" id={{session.login_elements[i]}} name={{session.login_elements[i]}} placeholder="Enter {{session.login_titles[i]}}">
                       {% else %}
-                      <input type="text" class="form-control" id={{session.login_elements[i]}} name={{session.login_elements[i]}} placeholder="Enter {{session.login_titles[i]}}">
+                      <input type="text" class="form-control input-sm" id={{session.login_elements[i]}} name={{session.login_elements[i]}} placeholder="Enter {{session.login_titles[i]}}">
                       {% endif %}
                     </div>
                     {% endfor %}
@@ -182,9 +182,9 @@
                                   <div class="form-group" style="font-size: 10px">
                                     <label for={{session.registration_elements[i]}}>{{session.registration_titles[i]}}</label>
                                      {% if i == 3 %}
-                                    <input type="password" class="form-control" id={{session.registration_elements[i]}} name={{session.registration_elements[i]}} placeholder = "Enter {{session.registration_titles[i]}}">
+                                    <input type="password" class="form-control input-sm" id={{session.registration_elements[i]}} name={{session.registration_elements[i]}} placeholder = "Enter {{session.registration_titles[i]}}">
                                       {% else %}
-                                    <input type="text" class="form-control" id={{session.registration_elements[i]}} name={{session.registration_elements[i]}} placeholder = "Enter {{session.registration_titles[i]}}">
+                                    <input type="text" class="form-control input-sm" id={{session.registration_elements[i]}} name={{session.registration_elements[i]}} placeholder = "Enter {{session.registration_titles[i]}}">
                                     {% endif %}
                                   </div>
                                   {% endfor %}
