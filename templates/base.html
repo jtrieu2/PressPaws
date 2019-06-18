@@ -13,6 +13,33 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <meta name=viewport content="width=device-width, initial-scale=1, user-scalable=yes">
   <style>
+
+  .logincontent {
+    width:250px;
+    height: 400px;
+  }
+  .registercontent {
+    width:250px;
+    height: 400px;
+  }
+
+  .modal-body::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Handle */
+  .modal-body::-webkit-scrollbar-thumb {
+    background: #5bc0de; 
+  }
+
+  /* Handle on hover */
+  .modal-body::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+  .modal-body::-webkit-scrollbar-track-piece {
+  }
+
   #navbar {
     background-color: black
   }
@@ -20,8 +47,7 @@
     background-color: #5bc0de;
     color:white !important;
     text-align: center;
-    font-size: 15px;
-    max-height: 30px;
+    font-size: 30px;
   }
   .modal-footer {
     background-color: #5bc0de;
@@ -112,14 +138,14 @@
         </li>
                    <!-- Modal -->
             <div class="modal fade" id="loginModal" role="dialog">
-              <div class="modal-dialog modal-sm">
+              <div class="modal-dialog modal-sm logincontent">
               
                <div class="modal-content">
-                <div class="modal-header" style="padding:35px 50px;">
+                <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 style="margin-top: auto; margin-bottom: auto"><span class="glyphicon glyphicon-lock"></span> Login</h4>
+                  <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
                 </div>
-                <div class="modal-body" style="padding:40px 50px;">
+                <div class="modal-body">
                   <form action="/landing-login" method="POST">
                     {% for i in range(2) %}
                     <div class="form-group" style="font-size: 12px">
@@ -145,14 +171,14 @@
           </li>
                 <!-- Modal -->
             <div class="modal fade" id="registerModal" role="dialog">
-                    <div class="modal-dialog modal-sm">    
+                    <div class="modal-dialog modal-sm registercontent">    
                             <!-- Modal content-->
                             <div class="modal-content">
-                              <div class="modal-header" style="padding:35px 50px;">
+                              <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4> Register</h4>
                               </div>
-                              <div class="modal-body" style="padding:40px 50px;">
+                              <div class="modal-body" style="max-height: 200px; overflow-y: scroll">
                                 <form action="/landing-registration" method="POST">
                                   {% for i in range(5) %}
                                   <div class="form-group" style="font-size: 12px">
