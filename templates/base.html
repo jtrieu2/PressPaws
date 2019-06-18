@@ -15,12 +15,10 @@
   <style>
 
   .logincontent {
-    width:250px;
-    height: 400px;
+    width:200px;
   }
   .registercontent {
-    width:250px;
-    height: 400px;
+    width:200px;
   }
 
   .modal-body::-webkit-scrollbar {
@@ -47,7 +45,7 @@
     background-color: #5bc0de;
     color:white !important;
     text-align: center;
-    font-size: 30px;
+    font-size: 15px;
   }
   .modal-footer {
     background-color: #5bc0de;
@@ -148,7 +146,7 @@
                 <div class="modal-body">
                   <form action="/landing-login" method="POST">
                     {% for i in range(2) %}
-                    <div class="form-group" style="font-size: 12px">
+                    <div class="form-group" style="font-size: 10px">
                       <label for={{session.login_elements[i]}}>{{session.login_titles[i]}}</label>
                       {% if i == 1 %}
                       <input type="password" class="form-control" id={{session.login_elements[i]}} name={{session.login_elements[i]}} placeholder="Enter {{session.login_titles[i]}}">
@@ -160,8 +158,8 @@
                         <button type="submit" class="btn btn-info btn-block"></span> Login</button>
                     </form>
                   </div>
-                  <div class="modal-footer" style="font-size: 12px">
-                    <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                  <div class="modal-footer" style="font-size: 10px">
+                    <button type="submit" class="btn btn-danger btn-sm btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
                   </div>
                 </div>
               </div>
@@ -181,7 +179,7 @@
                               <div class="modal-body" style="max-height: 200px; overflow-y: scroll">
                                 <form action="/landing-registration" method="POST">
                                   {% for i in range(5) %}
-                                  <div class="form-group" style="font-size: 12px">
+                                  <div class="form-group" style="font-size: 10px">
                                     <label for={{session.registration_elements[i]}}>{{session.registration_titles[i]}}</label>
                                      {% if i == 3 %}
                                     <input type="password" class="form-control" id={{session.registration_elements[i]}} name={{session.registration_elements[i]}} placeholder = "Enter {{session.registration_titles[i]}}">
@@ -193,8 +191,8 @@
                                   <button type="submit" class="btn btn-info btn-block"><span class="glyphicon glyphicon-off"></span> Register </button>
                                 </form>
                               </div>
-                              <div class="modal-footer" style="font-size: 12px">
-                                <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                              <div class="modal-footer" style="font-size: 10px">
+                                <button type="submit" class="btn btn-danger btn-sm btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
                               </div>
                             </div>
                   </div>
