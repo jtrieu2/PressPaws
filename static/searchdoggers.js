@@ -196,7 +196,9 @@ function callback(results, status) {
                        let content_str = ('<p id=infowindow>' + this.title + '</p>' +
                                           '<p id=infowindow>' + this.address + '</p>');
                   }
-                  infowindow.setContent(content_str);
+                  if (content_str) {
+                    infowindow.setContent(content_str);
+                  }
                   infowindow.open(map,this);
                 });
 
