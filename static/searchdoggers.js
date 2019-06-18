@@ -98,7 +98,7 @@ function callback(results, status) {
 
                 let place_icon = [];
                 place_icon[i] = $("<img>", {src: photoURL, class: "dogstoreimg", position: place.geometry.location});
-                place_icon[i].css({"borderRadius": "25px", "width": 75, "height": 75, "maxWidth": "100%", "maxeight": "100%"});
+                place_icon[i].css({"borderRadius": "25px", "width": 75, "height": 75});
                 ele.append(place_icon[i][0]);
 
                 address[i] = $("<div>", {text: place.formatted_address});
@@ -171,7 +171,7 @@ function callback(results, status) {
                       business_hours.css({"textAlign": "center"});
                   for (let i = 0; i < place.opening_hours.weekday_text.length; i++ ) {
                     let hours = $("<li>", {text: place.opening_hours.weekday_text[i]}); 
-                    hours.css({"fontSize": "3px","textAlign": "center"});
+                    hours.css({"fontSize": "4px","textAlign": "center"});
                     business_hours.append(hours);
                   }
                 } else {
@@ -186,16 +186,12 @@ function callback(results, status) {
                 ele.attr("class","doggy-store");
                 $("#doggy-list").append(ele);
 
-                newmarker[place.name].addListener('click',function() {
-                  if (this.image != null) {
-                       let content_str = ('<p id=infowindow>' + this.title + '</p>' +
-                                          '<p id=infowindow>' + `<img src=${photoURL} align="middle">` + '</img>' + '</p>' +
-                                          '<p id=infowindow>' + this.address + '</p>');
 
-                  } else {
-                       let content_str = ('<p id=infowindow>' + this.title + '</p>' +
+                let content_str = 'Nothing found';
+                newmarker[place.name].addListener('click',function() {
+                  content_str = ('<p id=infowindow>' + this.title + '</p>' +
                                           '<p id=infowindow>' + this.address + '</p>');
-                  }
+                  
                   if (content_str) {
                     infowindow.setContent(content_str);
                   }
