@@ -15,7 +15,7 @@ display: grid;
 grid-template-columns: auto auto;
 grid-auto-rows: auto;
 overflow: auto;
-height: 500px;
+height: 450px;
 background-color: moccasin;
 border-radius: 25px;
 /*justify-content: center;*/
@@ -24,18 +24,33 @@ border-radius: 25px;
 text-align: center;
 }
 #map {
-  height: 300px;
-  width: 30%;
-  height: auto;
+  max-width: 100%;
+  height: 700px;
   /*max-height:100%;*/
   /*max-width: 100%;*/
 }
+        /* width */
+  .PetShopsContainer::-webkit-scrollbar {
+    width: 10px;
+  }
+
+
+  /* Handle */
+  .PetShopsContainer::-webkit-scrollbar-thumb {
+    background: orange; 
+  }
+
+  /* Handle on hover */
+  .PetShopsContainer::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
 </style>
   <body>
-    <div class="container-fluid" style="background-color:linen">
-      <div class="row" style="justify-content: center; text-align: center">
-        <div class="col-sm-5" style="background-color:brown; text-align: center">
-          <h1 class="adoption-header" style="font-size:30px; margin-top: 50px"> Adoption Shelters</h1>
+    <div class="container-fluid" style="background-color:black">
+      <div class="row" style="justify-content: center;">
+        <div class="col-sm-5" style="background-color:brown;">
+          <a style="text-align: left" href="https://icons8.com/icon/81438/checkmark">Checkmark icon by Icons8</a>
+          <h1 class="adoption-header" style="font-size:30px; margin-top: 50px; text-align: center;"> Adoption Shelters</h1>
           <p id="floating-panel" 
           style="width: 300px; max-width: 100%; margin-left: auto; margin-right: auto">
             <input id="address" type="textbox" value="New York" style="font-size: 15px width=200px">
@@ -46,17 +61,13 @@ text-align: center;
             </ul>
           </p>
         </div>
-        <div class="col-sm-7" id="map" style="padding-top: 35%; margin-top: 150px"></div> 
+        <div class="col-sm-7">
+          <div style="width: 100%" id="map"></div>
+        </div> 
       </div>
   </div>
 
-<script type="text/javascript" src="/static/searchdoggers.js?2"> </script>
-  
-</script>
+  <script type="text/javascript" src="/static/searchdoggers.js?2"> </script>
     <script src="https://maps.googleapis.com/maps/api/js?key={{google_api_key}}&libraries=places&callback=initMap" async defer></script>
   </body>
-  <a href="https://icons8.com/icon/81438/checkmark">Checkmark icon by Icons8</a>
   {% endblock %}
-
-</html>
-</html>
