@@ -14,7 +14,8 @@ html, body {
 }
 #map {
   height: 500px;
-  width: 58%;
+  width: 45%;
+  height: auto;
   /*max-height:100%;*/
   /*max-width: 100%;*/
 }

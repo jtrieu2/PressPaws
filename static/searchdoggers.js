@@ -82,11 +82,11 @@ function callback(results, status) {
             service.getDetails(request, function(place, status) {
               if (status === google.maps.places.PlacesServiceStatus.OK) {
                 let ele = $("<li>");
-                ele.css({"textAlign": "center", "width": 100});
+                ele.css({"textAlign": "center", "width": 75});
 
                 let store_title = [];
                 store_title[i] = $("<div>", {text: place.name, class: "storename"});
-                store_title[i].css({"fontSize": "8px", "fontWeight": 700, "width":125});
+                store_title[i].css({"fontSize": "8px", "fontWeight": 700, "width":75});
                 ele.append(store_title[i][0]);
 
                 let photoURL; 
@@ -102,7 +102,7 @@ function callback(results, status) {
                 ele.append(place_icon[i][0]);
 
                 address[i] = $("<div>", {text: place.formatted_address});
-                address[i].css({"fontSize": "8px", "width": 125});
+                address[i].css({"fontSize": "8px", "width": 75});
                 ele.append(address[i][0]);
 
                 let button = [];
@@ -136,7 +136,7 @@ function callback(results, status) {
                 } else {
                   web_url[i] = $("<a>", {text: 'No website found.' });
                 }
-                  web_url[i].css({"fontSize": "8px", "width": 125});
+                  web_url[i].css({"fontSize": "8px", "width": 75});
                 link.append(web_url[i][0]);
                 ele.append(link);
 
@@ -171,7 +171,7 @@ function callback(results, status) {
                       business_hours.css({"textAlign": "center"});
                   for (let i = 0; i < place.opening_hours.weekday_text.length; i++ ) {
                     let hours = $("<li>", {text: place.opening_hours.weekday_text[i]}); 
-                    hours.css({"fontSize": "8px","textAlign": "center"});
+                    hours.css({"fontSize": "5px","textAlign": "center"});
                     business_hours.append(hours);
                   }
                 } else {
@@ -179,6 +179,8 @@ function callback(results, status) {
                     business_hours.css({"textAlign": "center","fontSize": "8px"});
 
                 }
+                business_hours.css("marginBottom","10px");
+
                 ele.append(business_hours);
 
                 ele.attr("class","doggy-store");
