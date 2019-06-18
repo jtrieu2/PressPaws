@@ -12,13 +12,7 @@ html, body {
   font-size: 60px;
   color: white;
 }
-#map {
-  height: 300px;
-  width: 30%;
-  height: auto;
-  /*max-height:100%;*/
-  /*max-width: 100%;*/
-}
+
 html, body {
   padding: 0;
 }

@@ -20,7 +20,8 @@
     background-color: #5bc0de;
     color:white !important;
     text-align: center;
-    font-size: 30px;
+    font-size: 15px;
+    max-height: 30px;
   }
   .modal-footer {
     background-color: #5bc0de;
@@ -111,17 +112,17 @@
         </li>
                    <!-- Modal -->
             <div class="modal fade" id="loginModal" role="dialog">
-              <div class="modal-dialog">
+              <div class="modal-dialog modal-sm">
               
                <div class="modal-content">
                 <div class="modal-header" style="padding:35px 50px;">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+                  <h4 style="margin-top: auto; margin-bottom: auto"><span class="glyphicon glyphicon-lock"></span> Login</h4>
                 </div>
                 <div class="modal-body" style="padding:40px 50px;">
                   <form action="/landing-login" method="POST">
                     {% for i in range(2) %}
-                    <div class="form-group">
+                    <div class="form-group" style="font-size: 12px">
                       <label for={{session.login_elements[i]}}>{{session.login_titles[i]}}</label>
                       {% if i == 1 %}
                       <input type="password" class="form-control" id={{session.login_elements[i]}} name={{session.login_elements[i]}} placeholder="Enter {{session.login_titles[i]}}">
@@ -133,7 +134,7 @@
                         <button type="submit" class="btn btn-info btn-block"></span> Login</button>
                     </form>
                   </div>
-                  <div class="modal-footer">
+                  <div class="modal-footer" style="font-size: 12px">
                     <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
                   </div>
                 </div>
@@ -144,7 +145,7 @@
           </li>
                 <!-- Modal -->
             <div class="modal fade" id="registerModal" role="dialog">
-                    <div class="modal-dialog">    
+                    <div class="modal-dialog modal-sm">    
                             <!-- Modal content-->
                             <div class="modal-content">
                               <div class="modal-header" style="padding:35px 50px;">
@@ -154,7 +155,7 @@
                               <div class="modal-body" style="padding:40px 50px;">
                                 <form action="/landing-registration" method="POST">
                                   {% for i in range(5) %}
-                                  <div class="form-group">
+                                  <div class="form-group" style="font-size: 12px">
                                     <label for={{session.registration_elements[i]}}>{{session.registration_titles[i]}}</label>
                                      {% if i == 3 %}
                                     <input type="password" class="form-control" id={{session.registration_elements[i]}} name={{session.registration_elements[i]}} placeholder = "Enter {{session.registration_titles[i]}}">
@@ -166,7 +167,7 @@
                                   <button type="submit" class="btn btn-info btn-block"><span class="glyphicon glyphicon-off"></span> Register </button>
                                 </form>
                               </div>
-                              <div class="modal-footer">
+                              <div class="modal-footer" style="font-size: 12px">
                                 <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
                               </div>
                             </div>
