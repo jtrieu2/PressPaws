@@ -2,6 +2,8 @@
 **Dog Community Website** </br>
 Deployed using Amazon Lightsail: [presspaws.info](http://presspaws.info)
 
+![](Homepage.gif)
+
 ```
 User Guide:
 The elements of the navbar at the top left lists all the pages available on this website: 
