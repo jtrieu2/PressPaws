@@ -1,5 +1,6 @@
 # PressPaws :dog:
-**Dog Community Website** </br>
+
+## Dog Community Website
 Deployed using Amazon Lightsail: [presspaws.info](http://presspaws.info)
 
 ![](GIPHYs/Homepage.gif)
@@ -20,20 +21,20 @@ The landing page of the website describes how users can interact with my site.
 2) Search for community dog friendly events by city, save favorite events,
    and send invitations of the event via email directly from the site.
 ```
-**Technologies** </br>
+## Technologies
 Back End | Python, Flask, PostgresSQL, SQLAlchemy, Pandas </br>
 Front End | JavaScript, JQuery, Ajax, Jinja2, HMTL5, CSS, Bootstrap </br>
 APIs | Google Maps, Google Places, Google Geocoder, Twilio SendGrid, Eventbrite </br>
 
-##Features
+## Features:
 
-Adoption Shelters Page
+## Adoption Shelters Page
 ![](GIPHYs/Shelters.gif)
 
-Community Events Page
+## Community Events Page
 ![](GIPHYs/Events.gif)
 
-User Profile Page
+## User Profile Page
 ![](GIPHYs/Profile.gif)
 
 
