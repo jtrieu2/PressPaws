@@ -2,7 +2,7 @@
 **Dog Community Website** </br>
 Deployed using Amazon Lightsail: [presspaws.info](http://presspaws.info)
 
-![](Homepage.gif)
+![](GIPHYs/Homepage.gif)
 
 ```
 User Guide:
