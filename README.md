@@ -33,4 +33,9 @@ Adoption Shelters Page
 Community Events Page
 ![](GIPHYs/Events.gif)
 
+User Profile Page
+![](GIPHYs/Profile.gif)
+
+
+
 
