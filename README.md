@@ -24,3 +24,8 @@ The landing page of the website describes how users can interact with my site.
 Back End | Python, Flask, PostgresSQL, SQLAlchemy, Pandas </br>
 Front End | JavaScript, JQuery, Ajax, Jinja2, HMTL5, CSS, Bootstrap </br>
 APIs | Google Maps, Google Places, Google Geocoder, Twilio SendGrid, Eventbrite </br>
+
+** Features **
+
+Adoption Shelters Page
+![](GIPHYs/Shelters.gif)
