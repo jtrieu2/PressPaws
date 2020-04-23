@@ -1,7 +1,6 @@
 # PressPaws :dog:
 
 ## Dog Community Website
-Deployed using Amazon Lightsail: [presspaws.info]
 
 ![](GIPHYs/Homepage.gif)
 
